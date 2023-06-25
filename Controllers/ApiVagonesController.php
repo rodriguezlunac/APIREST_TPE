@@ -4,7 +4,7 @@ require_once "./Models/vagonesModel.php";
 require_once "./Views/APIView.php";
 
 
-class vagonesController
+class APIVagonesController
 {
     private $model;
     private $view;
@@ -47,11 +47,14 @@ class vagonesController
         $descripcion = $body->descripcion;
         $locomotora_id = $body->locomotora_id;
         $vagon = $this->model->insertVagon($nro_vagon, $tipo, $capacidad_max, $modelo, $descripcion, $locomotora_id);
+
+        $this->view->response("Se ha insertado un nuevo vagón correctamente", 200);
     }
-    public function updateVagon($params=[]){
-        $id_vagon=$params[":ID"];
-        $vagon =$this->model->getVagon($id_vagon);
-        if($vagon){
+    public function updateVagon($params = [])
+    {
+        $id_vagon = $params[":ID"];
+        $vagon = $this->model->getVagon($id_vagon);
+        if ($vagon) {
             $body = $this->getData();
 
             $nro_vagon = $body->nro_vagon;
@@ -62,10 +65,8 @@ class vagonesController
             $locomotora_id = $body->locomotora_id;
             $vagon = $this->model->updateVagon($id_vagon, $nro_vagon, $tipo, $capacidad_max, $modelo, $descripcion, $locomotora_id);
             $this->view->response("Vagón con id: " . $id_vagon . " fue modificado con exito", 200);
-        }
-        else{
+        } else {
             $this->view->response("Vagón con id: " . $id_vagon . " no fue encontrado", 404);
-
         }
     }
     public function deleteVagon($params = [])

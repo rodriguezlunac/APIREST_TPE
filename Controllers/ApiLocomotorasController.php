@@ -4,7 +4,7 @@ require_once "./Models/locomotorasModel.php";
 require_once "./Views/APIView.php";
 
 
-class locomotorasController
+class APILocomotorasController
 {
     private $model;
     private $view;
@@ -39,6 +39,7 @@ class locomotorasController
             }
         }
     }
+
     public function insertLocomotora($params = [])
     {
         $body = $this->getData();
@@ -48,6 +49,8 @@ class locomotorasController
         $lugar_fabricacion = $body->lugar_fabricacion;
 
         $locomotora = $this->model->insertLocomotora($modelo, $anio_fabricacion, $lugar_fabricacion);
+        $this->view->response("Se ha insertado una nueva locomotora correctamente", 200);
+
     }
     public function updateLocomotora($params = [])
     {
