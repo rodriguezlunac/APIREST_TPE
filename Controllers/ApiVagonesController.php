@@ -20,6 +20,19 @@ class vagonesController
     {
         return json_decode($this->data);
     }
+    function get($params = [])
+    {
+        if (empty($params)) {
+
+            $vagones = $this->model->getVagones();
+            return $this->view->response($vagones, 200);
+        } else {
+            $vagon = $this->model->getVagon($params[":ID"]);
+            if (!empty($vagon)) {
+                return $this->view->response($vagon, 200);
+            }
+        }
+    }
     public function insertVagon($params = [])
     {
         $body = $this->getData();
@@ -50,19 +63,6 @@ class vagonesController
         else{
             $this->view->response("Vagón con id: " . $id_vagon . " no fue encontrado", 404);
 
-        }
-    }
-    function get($params = [])
-    {
-        if (empty($params)) {
-
-            $vagones = $this->model->getVagones();
-            return $this->view->response($vagones, 200);
-        } else {
-            $vagon = $this->model->getVagon($params[":ID"]);
-            if (!empty($vagon)) {
-                return $this->view->response($vagon, 200);
-            }
         }
     }
     public function deleteVagon($params = [])
