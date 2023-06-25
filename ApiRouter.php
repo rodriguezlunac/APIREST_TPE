@@ -5,9 +5,15 @@ require_once 'libs/Router.php';
 $router = new Router();
 
 // define la tabla de ruteo
+$router->addRoute('vagones', 'GET', 'ApiVagonesController', 'get');
+$router->addRoute('vagon/:ID', 'GET', 'ApiVagonesController', 'get');
+$router->addRoute('vagones', 'POST', 'ApiVagonesController', 'insertVagon');
+$router->addRoute('vagon/:ID', 'DELETE', 'ApiVagonesController', 'deleteVagon');
+$router->addRoute('vagon/:ID', 'PUT', 'ApiVagonesController', 'updateVagon');
 $router->addRoute('locomotoras', 'GET', 'ApiLocomotorasController', 'getLocomotoras');
-$router->addRoute('locomotoras', 'POST', 'ApiLocomotorasController', 'insertarLocomotora');
 $router->addRoute('locomotoras/:ID', 'GET', 'ApiLocomotorasController', 'getLocomotora');
-$router->addRoute('locomotoras/:ID', 'DELETE', 'ApiLocomotoraController', 'deleteLocomotora');
+$router->addRoute('locomotoras', 'POST', 'ApiLocomotorasController', 'insertLocomotora');
+$router->addRoute('locomotora/:ID', 'DELETE', 'ApiLocomotoraController', 'deleteLocomotora');
+$router->addRoute('locomotora/:ID', 'PUT', 'ApiLocomotoraController', 'updateLocomotora');
 // rutea
 $router->route($_GET["resource"], $_SERVER['REQUEST_METHOD']);
