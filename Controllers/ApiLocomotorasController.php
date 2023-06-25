@@ -1,6 +1,7 @@
 <?php
 require_once "./Models/locomotorasModel.php";
-require_once "./Views/ApiLocomotorasView.php";
+// require_once "./Views/ApiLocomotorasView.php";
+require_once "./Views/APIView.php";
 
 
 class locomotorasController
@@ -9,23 +10,22 @@ class locomotorasController
     private $view;
     private $data;
 
-
-
     function __construct()
     {
         $this->model = new locomotorasModel();
-        $this->view = new ApiLocomotorasView();
+        $this->view = new APIView();
+        // $this->view = new ApiLocomotorasView();
         $this->data = file_get_contents("php://input");
     }
     function getData()
     {
         return json_decode($this->data);
     }
-    function getLocomotoras($params = [])
-    {
-        $locomotoras = $this->model->getLocomotoras();
-        return $this->view->response($locomotoras, 200);
-    }
+    // function getLocomotoras($params = [])
+    // {
+    //     $locomotoras = $this->model->getLocomotoras();
+    //     return $this->view->response($locomotoras, 200);
+    // }
     function get($params = [])
     {
         if (empty($params)) {

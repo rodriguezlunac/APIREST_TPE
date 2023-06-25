@@ -1,6 +1,7 @@
 <?php
 require_once "./Models/vagonesModel.php";
-require_once "./Views/ApiVagonesView.php";
+// require_once "./Views/ApiVagonesView.php";
+require_once "./Views/APIView.php";
 
 
 class vagonesController
@@ -13,7 +14,9 @@ class vagonesController
     function __construct()
     {
         $this->model = new vagonesModel();
-        $this->view = new ApiVagonesView();
+        // $this->view = new ApiVagonesView();
+        $this->view = new APIView();
+
         $this->data = file_get_contents("php://input");
     }
     function getData()
