@@ -9,9 +9,10 @@ class APIView{
     private function _requestStatus($code)
     {
         $status = array(
-            200 => "OK",
-            404 => "Not found",
-            500 => "Internal Server Error"
+            200 => "Solicitud exitosa",
+            // 204 => "No hay contenido para enviar esta solicitud",
+            404 => "El servidor no puede encontrar el recurso solicitado",
+            500 => "Error interno del servidor"
         );
         return (isset($status[$code])) ? $status[$code] : $status[500];
     }

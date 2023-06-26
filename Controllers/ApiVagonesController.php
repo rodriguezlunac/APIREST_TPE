@@ -37,22 +37,39 @@ class APIVagonesController
         }
     }
 
+
+
+
     public function insertVagon()
     {
         $body = $this->getData();
+
+        // Verificar si se proporcionan todos los parámetros necesarios
+        $requiredParams = ['nro_vagon', 'tipo', 'capacidad_max', 'modelo', 'descripcion', 'locomotora_id'];
+        foreach ($requiredParams as $param) {
+            if (!property_exists($body, $param)) {
+                return $this->view->response("Falta/n parametros", 400);
+            }
+        }
+        // Obtener los valores de los parámetros
         $nro_vagon = $body->nro_vagon;
         $tipo = $body->tipo;
         $capacidad_max = $body->capacidad_max;
         $modelo = $body->modelo;
         $descripcion = $body->descripcion;
         $locomotora_id = $body->locomotora_id;
+
+        // Insertar el vagón en la base de datos
         $vagon = $this->model->insertVagon($nro_vagon, $tipo, $capacidad_max, $modelo, $descripcion, $locomotora_id);
-        
-        $vagonNuevo = $this->model->getVagon($vagon);
-        if ($vagonNuevo)
-            $this->view->response("Se ha insertado un nuevo vagón correctamente", 200);
-        else
-            $this->view->response("Error al insertar tarea", 500);
+        // Verificar si la inserción fue exitosa
+        if ($vagon) {
+            $vagonNuevo = $this->model->getVagon($vagon);
+            if ($vagonNuevo) {
+                return $this->view->response("Se ha insertado un nuevo vagón correctamente", 200);
+            } else {
+                $this->view->response("Error al insertar tarea", 500);
+            }
+        }
     }
 
     public function updateVagon($params = [])

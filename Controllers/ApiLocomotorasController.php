@@ -21,7 +21,7 @@ class APILocomotorasController
     {
         return json_decode($this->data);
     }
-   
+
     function get($params = [])
     {
         if (empty($params)) {
@@ -43,16 +43,18 @@ class APILocomotorasController
         $modelo = $body->modelo;
         $anio_fabricacion = $body->anio_fabricacion;
         $lugar_fabricacion = $body->lugar_fabricacion;
+        if (!empty($modelo) && !empty($lugar_fabricacion) && !empty($lugar_fabricacion)) {
 
-        $locomotora = $this->model->insertLocomotora($modelo, $anio_fabricacion, $lugar_fabricacion);
+            $locomotora = $this->model->insertLocomotora($modelo, $anio_fabricacion, $lugar_fabricacion);
+            $locomotoraNueva = $this->model->getLocomotora($locomotora);
+        }
 
-        $locomotoraNueva = $this->model->getLocomotora($locomotora);
         if ($locomotoraNueva)
             $this->view->response("Se ha insertado un nuevo vagón correctamente", 200);
         else
             $this->view->response("Error al insertar tarea", 500);
     }
-    
+
     public function updateLocomotora($params = [])
     {
         $id_locomotora = $params[":ID"];
@@ -121,10 +123,8 @@ class APILocomotorasController
         if (isset($_GET['anio'])) {
             $filterByColumna = $this->model->filterByColumna($_GET['anio']);
             return $this->view->response($filterByColumna, 200);
-        }
-        else{
+        } else {
             return $this->view->response("Parametro no seteado", 404);
-
         }
     }
 }
