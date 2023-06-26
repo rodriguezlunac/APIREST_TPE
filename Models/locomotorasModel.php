@@ -57,20 +57,5 @@ class locomotorasModel
         return $groupByColumna;
 
     } 
-    public function orderByColumna($columna, $orden)
-    {
-        $sentencia = $this->db->prepare("SELECT vagon.* , locomotora.modelo as locomotora_modelo FROM vagon  JOIN locomotora  ON vagon.locomotora_id =locomotora.id_locomotora ORDER BY  $columna $orden");
-        $sentencia->execute();
-        $oderByColumna = $sentencia->fetchAll(PDO::FETCH_OBJ);
-
-        return $oderByColumna;
-    }
-  
-    public function filterByColumna($capacidad_max)
-    {
-        $sentencia = $this->db->prepare("SELECT vagon.* , locomotora.modelo as locomotora_modelo FROM vagon  JOIN locomotora  ON vagon.locomotora_id =locomotora.id_locomotora WHERE  capacidad_max>?");
-        $sentencia->execute([$capacidad_max]);
-        $groupByColumna = $sentencia->fetchAll(PDO::FETCH_OBJ);
-        return $groupByColumna;
-    }
+ 
 }

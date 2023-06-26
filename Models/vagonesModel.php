@@ -49,5 +49,20 @@ class vagonesModel
         $sentencia = $this->db->prepare("UPDATE vagon SET nro_vagon = ?, tipo = ?, capacidad_max = ?, modelo = ?, descripcion = ?, locomotora_id = ? WHERE id_vagon = ? ");
         $sentencia->execute([$nro_vagon, $tipo, $capacidad_max, $modelo, $descripcion, $locomotora_id, $id_vagon]);
     }
+    public function orderByColumna($columna, $orden)
+    {
+        $sentencia = $this->db->prepare("SELECT vagon.* , locomotora.modelo as locomotora_modelo FROM vagon  JOIN locomotora  ON vagon.locomotora_id =locomotora.id_locomotora ORDER BY  $columna $orden");
+        $sentencia->execute();
+        $oderByColumna = $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+        return $oderByColumna;
+    }
   
+    public function filterByColumna($capacidad_max)
+    {
+        $sentencia = $this->db->prepare("SELECT vagon.* , locomotora.modelo as locomotora_modelo FROM vagon  JOIN locomotora  ON vagon.locomotora_id =locomotora.id_locomotora WHERE  capacidad_max>?");
+        $sentencia->execute([$capacidad_max]);
+        $groupByColumna = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $groupByColumna;
+    }
 }
