@@ -80,4 +80,51 @@ class APILocomotorasController
             $this->view->response("Locomotora con id: " . $id_locomotora . " no fue encontrada", 404);
         }
     }
+    public function orderByColumna()
+    {
+        if (isset($_GET['columna']) && isset($_GET['orden'])) {
+            $columna = '';
+            $orden = '';
+            switch ($_GET['columna']) {
+                case 'anio_fabricacion':
+                    $columna = 'anio_fabricacion';
+                    break;
+                case 'modelo':
+                    $columna = 'modelo';
+                    break;
+                case 'lugar_fabricacion':
+                    $columna = 'lugar_fabricacion';
+                    break;
+                default:
+                    return $this->view->response("Columna inexistente", 404);
+                    break;
+            }
+            switch ($_GET['orden']) {
+                case 'asc':
+                    $orden = "asc";
+                    break;
+                case 'desc':
+                    $orden = "desc";
+                    break;
+                default:
+                    return $this->view->response("Orden inexistente", 404);
+                    break;
+            }
+            $orderByColumna = $this->model->orderByColumna($columna, $orden);
+            return $this->view->response($orderByColumna, 200);
+        } else {
+            return $this->view->response("Parametros no seteados", 404);
+        }
+    }
+    public function filterByColumna()
+    {
+        if (isset($_GET['anio'])) {
+            $filterByColumna = $this->model->filterByColumna($_GET['anio']);
+            return $this->view->response($filterByColumna, 200);
+        }
+        else{
+            return $this->view->response("Parametro no seteado", 404);
+
+        }
+    }
 }

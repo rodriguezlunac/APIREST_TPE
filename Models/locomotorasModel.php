@@ -42,4 +42,35 @@ class locomotorasModel
         $sentencia = $this->db->prepare("UPDATE locomotora SET modelo = ?, anio_fabricacion = ?, lugar_fabricacion = ? WHERE id_locomotora = ? ");
         $sentencia->execute([$modelo, $anio_fabricacion, $lugar_fabricacion, $id_locomotora]);
     }
+    public function orderByColumna($columna, $orden){
+        $sentencia = $this->db->prepare("SELECT * FROM locomotora order by $columna $orden");
+        $sentencia->execute();
+        $oderByColumna= $sentencia->fetchAll(PDO::FETCH_OBJ);
+        // var_dump($oderByColumna);
+        return $oderByColumna;
+
+    }
+    public function filterByColumna($anio){
+        $sentencia=$this->db->prepare("SELECT * FROM locomotora WHERE anio_fabricacion>?");
+        $sentencia->execute([$anio]);
+        $groupByColumna= $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $groupByColumna;
+
+    } 
+    public function orderByColumna($columna, $orden)
+    {
+        $sentencia = $this->db->prepare("SELECT vagon.* , locomotora.modelo as locomotora_modelo FROM vagon  JOIN locomotora  ON vagon.locomotora_id =locomotora.id_locomotora ORDER BY  $columna $orden");
+        $sentencia->execute();
+        $oderByColumna = $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+        return $oderByColumna;
+    }
+  
+    public function filterByColumna($capacidad_max)
+    {
+        $sentencia = $this->db->prepare("SELECT vagon.* , locomotora.modelo as locomotora_modelo FROM vagon  JOIN locomotora  ON vagon.locomotora_id =locomotora.id_locomotora WHERE  capacidad_max>?");
+        $sentencia->execute([$capacidad_max]);
+        $groupByColumna = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $groupByColumna;
+    }
 }

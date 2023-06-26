@@ -86,4 +86,60 @@ class APIVagonesController
             $this->view->response("Vagón con id: " . $id_vagon . " no fue encontrado", 404);
         }
     }
+    public function orderByColumna()
+    {
+
+        if (isset($_GET['columna']) && isset($_GET['orden'])) {
+            $columna = '';
+            $orden = '';
+            switch ($_GET['columna']) {
+
+                case 'nro_vagon':
+                    $columna = 'nro_vagon';
+                    break;
+                case 'tipo':
+                    $columna = 'tipo';
+                    break;
+                case 'capacidad_max':
+                    $columna = 'capacidad_max';
+                    break;
+                case 'modelo':
+                    $columna = 'modelo';
+                    break;
+                case 'descripcion':
+                    $columna = 'descripcion';
+                    break;
+                case 'locomotora_id':
+                    $columna = 'locomotora_id';
+                    break;
+                default:
+                    return $this->view->response("Columna inexistente", 404);
+                    break;
+            }
+            switch ($_GET['orden']) {
+                case 'asc':
+                    $orden = "asc";
+                    break;
+                case 'desc':
+                    $orden = "desc";
+                    break;
+                default:
+                    return $this->view->response("Orden inexistente", 404);
+                    break;
+            }
+            $orderByColumna = $this->model->orderByColumna($columna, $orden);
+            return $this->view->response($orderByColumna, 200);
+        } else {
+            return $this->view->response("Parametros no seteados", 404);
+        }
+    }
+    public function filterByColumna()
+    {
+        if (isset($_GET['capacidad_max'])) {
+            $filterColumna = $this->model->filterByColumna($_GET['capacidad_max']);
+            return $this->view->response($filterColumna, 200);
+        } else {
+            return $this->view->response("Parametro no seteado", 404);
+        }
+    }
 }
