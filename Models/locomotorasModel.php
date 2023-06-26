@@ -7,6 +7,7 @@ class locomotorasModel
     {
         $this->db = new PDO('mysql:host=localhost;' . 'dbname=db_trenes;charset=utf8', 'root', '');
     }
+
     public function getLocomotoras()
     {
         $sentencia = $this->db->prepare("SELECT * FROM  locomotora");
@@ -22,10 +23,12 @@ class locomotorasModel
         $locomotora = $sentencia->fetch(PDO::FETCH_OBJ);
         return $locomotora;
     }
+
     public function insertLocomotora($modelo, $anio_fabricacion, $lugar_fabricacion)
     {
         $sentencia = $this->db->prepare("INSERT INTO locomotora(modelo, anio_fabricacion, lugar_fabricacion) VALUES(?,?,?)");
         $sentencia->execute([$modelo, $anio_fabricacion, $lugar_fabricacion]);
+        return $this->db->lastInsertId();
     }
 
     public function deleteLocomotora($id_locomotora)

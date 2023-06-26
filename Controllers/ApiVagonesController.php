@@ -14,19 +14,19 @@ class APIVagonesController
     function __construct()
     {
         $this->model = new vagonesModel();
-        // $this->view = new ApiVagonesView();
         $this->view = new APIView();
 
         $this->data = file_get_contents("php://input");
     }
-    function getData()
+
+    private function getData()
     {
         return json_decode($this->data);
     }
-    function get($params = [])
+
+    public function get($params = [])
     {
         if (empty($params)) {
-
             $vagones = $this->model->getVagones();
             return $this->view->response($vagones, 200);
         } else {
@@ -36,10 +36,10 @@ class APIVagonesController
             }
         }
     }
-    public function insertVagon($params = [])
+
+    public function insertVagon()
     {
         $body = $this->getData();
-
         $nro_vagon = $body->nro_vagon;
         $tipo = $body->tipo;
         $capacidad_max = $body->capacidad_max;
@@ -47,9 +47,14 @@ class APIVagonesController
         $descripcion = $body->descripcion;
         $locomotora_id = $body->locomotora_id;
         $vagon = $this->model->insertVagon($nro_vagon, $tipo, $capacidad_max, $modelo, $descripcion, $locomotora_id);
-
-        $this->view->response("Se ha insertado un nuevo vagón correctamente", 200);
+        
+        $vagonNuevo = $this->model->getVagon($vagon);
+        if ($vagonNuevo)
+            $this->view->response("Se ha insertado un nuevo vagón correctamente", 200);
+        else
+            $this->view->response("Error al insertar tarea", 500);
     }
+
     public function updateVagon($params = [])
     {
         $id_vagon = $params[":ID"];
@@ -69,6 +74,7 @@ class APIVagonesController
             $this->view->response("Vagón con id: " . $id_vagon . " no fue encontrado", 404);
         }
     }
+
     public function deleteVagon($params = [])
     {
         $id_vagon = $params[":ID"];

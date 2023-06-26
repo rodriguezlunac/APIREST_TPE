@@ -3,6 +3,11 @@ require_once 'libs/Router.php';
 require_once 'Controllers/APILocomotorasController.php';
 require_once 'Controllers/APIVagonesController.php';
 
+define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
+
+$resource = $_GET["resource"];
+$method = $_SERVER["REQUEST_METHOD"];
+
 // crea el router
 $router = new Router();
 
@@ -12,10 +17,11 @@ $router->addRoute('vagon/:ID', 'GET', 'APIVagonesController', 'get');
 $router->addRoute('vagones', 'POST', 'APIVagonesController', 'insertVagon');
 $router->addRoute('vagon/:ID', 'DELETE', 'APIVagonesController', 'deleteVagon');
 $router->addRoute('vagon/:ID', 'PUT', 'APIVagonesController', 'updateVagon');
+
 $router->addRoute('locomotoras', 'GET', 'APILocomotorasController', 'get');
-$router->addRoute('locomotoras/:ID', 'GET', 'APILocomotorasController', 'get');
+$router->addRoute('locomotora/:ID', 'GET', 'APILocomotorasController', 'get');
 $router->addRoute('locomotoras', 'POST', 'APILocomotorasController', 'insertLocomotora');
 $router->addRoute('locomotora/:ID', 'DELETE', 'APILocomotorasController', 'deleteLocomotora');
 $router->addRoute('locomotora/:ID', 'PUT', 'APILocomotorasController', 'updateLocomotora');
 // rutea
-$router->route($_GET["resource"], $_SERVER['REQUEST_METHOD']);
+$router->route($resource, $method);

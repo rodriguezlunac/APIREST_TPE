@@ -21,11 +21,7 @@ class APILocomotorasController
     {
         return json_decode($this->data);
     }
-    // function getLocomotoras($params = [])
-    // {
-    //     $locomotoras = $this->model->getLocomotoras();
-    //     return $this->view->response($locomotoras, 200);
-    // }
+   
     function get($params = [])
     {
         if (empty($params)) {
@@ -40,7 +36,7 @@ class APILocomotorasController
         }
     }
 
-    public function insertLocomotora($params = [])
+    public function insertLocomotora()
     {
         $body = $this->getData();
         // $id_locomotora = $body->id_locomotora;
@@ -49,9 +45,14 @@ class APILocomotorasController
         $lugar_fabricacion = $body->lugar_fabricacion;
 
         $locomotora = $this->model->insertLocomotora($modelo, $anio_fabricacion, $lugar_fabricacion);
-        $this->view->response("Se ha insertado una nueva locomotora correctamente", 200);
 
+        $locomotoraNueva = $this->model->getLocomotora($locomotora);
+        if ($locomotoraNueva)
+            $this->view->response("Se ha insertado un nuevo vagón correctamente", 200);
+        else
+            $this->view->response("Error al insertar tarea", 500);
     }
+    
     public function updateLocomotora($params = [])
     {
         $id_locomotora = $params[":ID"];
