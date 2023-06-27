@@ -136,9 +136,10 @@ class APILocomotorasController
 
             $pagina = $_GET['pagina'];
             $locomotoras = $this->model->paginado($pagina);
+            // echo "ENTRO AL ISSET";
             return $this->view->response($locomotoras, 200);
         } else {
-            return $this->view->response("No existe la pagina número ". $_GET['pagina'], 404);
+            return $this->view->response("No existe la pagina número " . $_GET['pagina'], 404);
         }
     }
 }

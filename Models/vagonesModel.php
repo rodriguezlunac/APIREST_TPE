@@ -65,4 +65,22 @@ class vagonesModel
         $groupByColumna = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $groupByColumna;
     }
+    public function count()
+    {
+        $sentencia = $this->db->prepare("SELECT ceiling(count(*)/10) as cantidad FROM vagon");
+        $sentencia->execute();
+        $registros = $sentencia->fetch(PDO::FETCH_OBJ);
+        $cantidad = $registros->cantidad;
+        return $cantidad;
+    }
+
+    public function paginado($pagina)
+    {
+        $pag = ($pagina - 1) * 10;
+        $sentencia = $this->db->prepare("SELECT * FROM vagon LIMIT 10 OFFSET $pag");
+
+        $sentencia->execute();
+        $vagones = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $vagones;
+    }
 }

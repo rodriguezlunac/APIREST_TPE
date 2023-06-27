@@ -18,6 +18,8 @@ $router->addRoute('vagones', 'GET', 'APIVagonesController', 'get');
 $router->addRoute('vagones/ordenados', 'GET', 'APIVagonesController', 'orderByColumna');
 //TRAE LOS VAGONES POR FILTRO DE AÑO DE FABRICACION MAYOR A UN VALOR
 $router->addRoute('vagones/filtro', 'GET', 'APIVagonesController', 'filterByColumna');
+//PAGINADO
+$router->addRoute('vagones/paginado', 'GET', 'APIVagonesController', 'paginado');
 //TRAE UN VAGON ESPECIFICO POR ID
 $router->addRoute('vagon/:ID', 'GET', 'APIVagonesController', 'get');
 //INSERTA UN VAGON

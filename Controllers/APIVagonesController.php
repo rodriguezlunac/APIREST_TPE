@@ -158,4 +158,18 @@ class APIVagonesController
             return $this->view->response("Parametro no seteado", 404);
         }
     }
+    public function paginado()
+    {
+
+        $cantidad = $this->model->count();
+        if (isset($_GET['pagina']) && ($_GET['pagina']) <= $cantidad) {
+
+            $pagina = $_GET['pagina'];
+            $vagones = $this->model->paginado($pagina);
+            // echo "ENTRO AL ISSET";
+            return $this->view->response($vagones, 200);
+        } else {
+            return $this->view->response("No existe la pagina número " . $_GET['pagina'], 404);
+        }
+    }
 }

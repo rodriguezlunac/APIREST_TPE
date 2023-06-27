@@ -64,16 +64,10 @@ class locomotorasModel
         $sentencia = $this->db->prepare("SELECT ceiling(count(*)/10) as cantidad FROM locomotora");
         $sentencia->execute();
         $registros = $sentencia->fetch(PDO::FETCH_OBJ);
-        // var_dump( $registros->registros);
         $cantidad = $registros->cantidad;
         return $cantidad;
     }
-    // public function paginado(){
-    //     $sentencia = $this->db->prepare("SELECT * FROM locomotora LIMIT 10");
-    //     $sentencia->execute();
-    //     $registros = $sentencia->fetchAll(PDO::FETCH_OBJ);
-    //     return $registros;
-    // }
+
     public function paginado($pagina)
     {
         $pag = ($pagina - 1) * 10;
