@@ -51,9 +51,9 @@ Vagones
     El parámetro "columna=" puede tomar los valores "nro_vagon", "tipo", "capacidad_max", "modelo", "descripcion" o "locomotora_id".
     El parámetro "orden=" puede tomar los valores "asc" o "desc".
 
-7. Para filtrar vagones según su capaxidad maxima: 
+7. Para filtrar vagones según su capacidad maxima: 
     URL/vagones/filtro?capacidad_max=20000
-    Devuelve los vagones con capaxidad igual o posterior al indicado
+    Devuelve los vagones con capacidad mayor al valor indicado
 
 
 Locomotoras
@@ -95,4 +95,4 @@ Locomotoras
 
 7. Para filtrar locomotoras según el año de fabricación: 
     URL/locomotoras/filtro?anio_fabricacion=2000
-    Devuelve las locomotoras con año de fabricación igual o posterior al indicado
+    Devuelve las locomotoras con año de fabricación mayor al valor indicado
