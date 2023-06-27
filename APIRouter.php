@@ -32,6 +32,9 @@ $router->addRoute('locomotoras', 'GET', 'APILocomotorasController', 'get');
 $router->addRoute('locomotoras/filtro', 'GET', 'APILocomotorasController', 'filterByColumna');
 //TRAE LAS LOCOMOTORAS ORDENADAS POR COLUMNA Y ORDEN
 $router->addRoute('locomotoras/ordenadas', 'GET', 'APILocomotorasController', 'orderByColumna');
+
+//PAGINADO
+$router->addRoute('locomotoras/paginado', 'GET', 'APILocomotorasController', 'paginado');
 //TRAE UNA LOCOMOTORA ESPECIFICA POR ID
 $router->addRoute('locomotora/:ID', 'GET', 'APILocomotorasController', 'get');
 //iNSERTA UNA LOCOMOTORA
@@ -40,5 +43,6 @@ $router->addRoute('locomotoras', 'POST', 'APILocomotorasController', 'insertLoco
 $router->addRoute('locomotora/:ID', 'DELETE', 'APILocomotorasController', 'deleteLocomotora');
 //MODIFICA UNA LOCOMOTORA POR ID
 $router->addRoute('locomotora/:ID', 'PUT', 'APILocomotorasController', 'updateLocomotora');
+
 // rutea
 $router->route($resource, $method);

@@ -118,7 +118,7 @@ class APILocomotorasController
             return $this->view->response("Parametros no seteados", 404);
         }
     }
-    
+
     public function filterByColumna()
     {
         if (isset($_GET['anio'])) {
@@ -126,6 +126,19 @@ class APILocomotorasController
             return $this->view->response($filterByColumna, 200);
         } else {
             return $this->view->response("Parametro no seteado", 404);
+        }
+    }
+    public function paginado()
+    {
+
+        $cantidad = $this->model->count();
+        if (isset($_GET['pagina']) && ($_GET['pagina']) <= $cantidad) {
+
+            $pagina = $_GET['pagina'];
+            $locomotoras = $this->model->paginado($pagina);
+            return $this->view->response($locomotoras, 200);
+        } else {
+            return $this->view->response("No existe la pagina número ". $_GET['pagina'], 404);
         }
     }
 }
