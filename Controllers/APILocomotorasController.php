@@ -2,7 +2,7 @@
 require_once "./Models/locomotorasModel.php";
 require_once "./Views/APIView.php";
 
-
+//VER QUE SIEMPRE TIRA 500 EN POSTMAN POR MAS QUE ANDE
 class APILocomotorasController
 {
     private $model;
@@ -23,48 +23,57 @@ class APILocomotorasController
 
     function get($params = [])
     {
+        //FALTA CONTEMPLAR LA URI /LOCOMOTORAS/456 TIENE QUE TIRAR ERROR
         if (empty($params)) {
 
             $locomotoras = $this->model->getLocomotoras();
-            return $this->view->response($locomotoras, 200);
+            if (!empty($locomotoras)) {
+                return $this->view->response($locomotoras, 200);
+            } else {
+                return $this->view->response("No hay locomotoras", 404);
+            }
         } else {
             $locomotora = $this->model->getLocomotora($params[":ID"]);
             if (!empty($locomotora)) {
                 return $this->view->response($locomotora, 200);
+            } else {
+                return $this->view->response("No se ha encontrado una locomotora con id: " . $params[":ID"], 404);
             }
         }
     }
 
     public function insertLocomotora()
     {
+        //CONTEMPLAR ERROR SI NO INGRESA UN VALOR, HACER CON EL REQUIRED_PARAMS QUE ESTA HECHO EN VAGONES
         $body = $this->getData();
         $modelo = $body->modelo;
         $anio_fabricacion = $body->anio_fabricacion;
         $lugar_fabricacion = $body->lugar_fabricacion;
-        if (!empty($modelo) && !empty($lugar_fabricacion) && !empty($lugar_fabricacion)) {
+        if (!empty($modelo) && !empty($anio_fabricacion) && !empty($lugar_fabricacion)) {
 
             $locomotora = $this->model->insertLocomotora($modelo, $anio_fabricacion, $lugar_fabricacion);
             $locomotoraNueva = $this->model->getLocomotora($locomotora);
         }
-
         if ($locomotoraNueva)
-            $this->view->response("Se ha insertado un nuevo vagón correctamente", 200);
+            $this->view->response("Se ha insertado una nueva locomotora correctamente", 201);
         else
-            $this->view->response("Error al insertar tarea", 500);
+            $this->view->response("Error al insertar locomotora", 400);
     }
 
     public function updateLocomotora($params = [])
     {
+        //CONTEMPLAR ERROR SI NO INGRESA UN VALOR,HACER CON EL REQUIRED_PARAMS QUE ESTA HECHO EN VAGONES
         $id_locomotora = $params[":ID"];
         $locomotora = $this->model->getLocomotora($id_locomotora);
         if ($locomotora) {
             $body = $this->getData();
-
             $modelo = $body->modelo;
             $anio_fabricacion = $body->anio_fabricacion;
             $lugar_fabricacion = $body->lugar_fabricacion;
-            $locomotora = $this->model->updateLocomotora($id_locomotora, $modelo, $anio_fabricacion, $lugar_fabricacion);
-            $this->view->response("Locomotora con id: " . $id_locomotora . " fue modificada con exito", 200);
+            if (!empty($modelo) && !empty($anio_fabricacion) && !empty($lugar_fabricacion)) {
+                $locomotora = $this->model->updateLocomotora($id_locomotora, $modelo, $anio_fabricacion, $lugar_fabricacion);
+                $this->view->response("Locomotora con id: " . $id_locomotora . " fue modificada con exito", 201);
+            }
         } else {
             $this->view->response("Locomotora con id: " . $id_locomotora . " no fue encontrada", 404);
         }
@@ -115,7 +124,7 @@ class APILocomotorasController
             $orderByColumna = $this->model->orderByColumna($columna, $orden);
             return $this->view->response($orderByColumna, 200);
         } else {
-            return $this->view->response("Parametros no seteados", 404);
+            return $this->view->response("Parametros no seteados", 400);
         }
     }
 
@@ -125,18 +134,15 @@ class APILocomotorasController
             $filterByColumna = $this->model->filterByColumna($_GET['anio_fabricacion']);
             return $this->view->response($filterByColumna, 200);
         } else {
-            return $this->view->response("Parametro no seteado", 404);
+            return $this->view->response("Parametro no seteado", 400);
         }
     }
     public function paginado()
     {
-
         $cantidad = $this->model->count();
         if (isset($_GET['pagina']) && ($_GET['pagina']) <= $cantidad) {
-
             $pagina = $_GET['pagina'];
             $locomotoras = $this->model->paginado($pagina);
-            // echo "ENTRO AL ISSET";
             return $this->view->response($locomotoras, 200);
         } else {
             return $this->view->response("No existe la pagina número " . $_GET['pagina'], 404);

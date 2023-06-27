@@ -48,7 +48,6 @@ class locomotorasModel
         $sentencia = $this->db->prepare("SELECT * FROM locomotora order by $columna $orden");
         $sentencia->execute();
         $oderByColumna = $sentencia->fetchAll(PDO::FETCH_OBJ);
-        // var_dump($oderByColumna);
         return $oderByColumna;
     }
 
@@ -72,7 +71,6 @@ class locomotorasModel
     {
         $pag = ($pagina - 1) * 10;
         $sentencia = $this->db->prepare("SELECT * FROM locomotora LIMIT 10 OFFSET $pag");
-
         $sentencia->execute();
         $locomotoras = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $locomotoras;

@@ -10,10 +10,12 @@ class APIView{
     {
         $status = array(
             200 => "Solicitud exitosa",
-            // 204 => "No hay contenido para enviar esta solicitud",
+            201 => "Creado con exito",
+            400 => "El servidor no puede procesar la petición debido a un error del cliente",
             404 => "El servidor no puede encontrar el recurso solicitado",
             500 => "Error interno del servidor",
         );
         return (isset($status[$code])) ? $status[$code] : $status[500];
     }
+    //VER CUANDO USAR EL CODIGO 500
 }
