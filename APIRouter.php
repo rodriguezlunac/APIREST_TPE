@@ -12,6 +12,7 @@ $method = $_SERVER["REQUEST_METHOD"];
 $router = new Router();
 
 // define la tabla de ruteo
+
 //TRAE TODOS LOS VAGONES
 $router->addRoute('vagones', 'GET', 'APIVagonesController', 'get');
 //TRAE LOS VAGONES ORDENADOS POR COLUMNA Y ORDEN
@@ -34,7 +35,6 @@ $router->addRoute('locomotoras', 'GET', 'APILocomotorasController', 'get');
 $router->addRoute('locomotoras/filtro', 'GET', 'APILocomotorasController', 'filterByColumna');
 //TRAE LAS LOCOMOTORAS ORDENADAS POR COLUMNA Y ORDEN
 $router->addRoute('locomotoras/ordenadas', 'GET', 'APILocomotorasController', 'orderByColumna');
-
 //PAGINADO
 $router->addRoute('locomotoras/paginado', 'GET', 'APILocomotorasController', 'paginado');
 //TRAE UNA LOCOMOTORA ESPECIFICA POR ID
