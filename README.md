@@ -1,6 +1,6 @@
 # APIREST_TPE
 URL: http://localhost/carpeta/APIREST_TPE/api/
-"carpeta" es en donde uno guarda el trabajo.
+"carpeta" donde se guarda el trabajo.
 
 Vagones
 1. Para mostrar todos los vagones GET: 
@@ -48,12 +48,12 @@ Vagones
 
 6. Para ordenar vagones según la columna que elijas, asc o desc:
     URL/vagones/ordenados?columna=modelo&orden=asc
-    para "columna=" se le puede poner "nro_vagon", "tipo", "capacidad_max", "modelo", "descripcion" o "locomotora_id".
-    para "orden=" se le puede poner "asc" o "desc".
+    El parámetro "columna=" puede tomar los valores "nro_vagon", "tipo", "capacidad_max", "modelo", "descripcion" o "locomotora_id".
+    El parámetro "orden=" puede tomar los valores "asc" o "desc".
 
-7. Para hacer un filtro de vagones según su capaxidad maxima: 
+7. Para filtrar vagones según su capaxidad maxima: 
     URL/vagones/filtro?capacidad_max=20000
-    Te va a filtrar mayor o igual a la capaxidad que pusiste. 
+    Devuelve los vagones con capaxidad igual o posterior al indicado
 
 
 Locomotoras
@@ -90,9 +90,9 @@ Locomotoras
 
 6. Para ordenar locomotoras según la columna que elijas, asc o desc:
     URL/locomotoras/ordenados?columna=anio_fabricacion&orden=desc
-    para "columna=" se le puede poner "anio_fabricacion", "modelo" o "lugar_fabricacion".
-    para "orden=" se le puede poner "asc" o "desc".
+    El parámetro "columna=" puede tomar los valores "anio_fabricacion", "modelo" o "lugar_fabricacion".
+    El parámetro "orden=" puede tomar los valores "asc" o "desc".
 
-7. Para hacer un filtro de locomotoras según el año de fabricación: 
+7. Para filtrar locomotoras según el año de fabricación: 
     URL/locomotoras/filtro?anio_fabricacion=2000
-    Te va a filtrar del año que pusite hacia adelante.
+    Devuelve las locomotoras con año de fabricación igual o posterior al indicado
