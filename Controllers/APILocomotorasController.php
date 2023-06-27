@@ -1,6 +1,5 @@
 <?php
 require_once "./Models/locomotorasModel.php";
-// require_once "./Views/ApiLocomotorasView.php";
 require_once "./Views/APIView.php";
 
 
@@ -14,9 +13,9 @@ class APILocomotorasController
     {
         $this->model = new locomotorasModel();
         $this->view = new APIView();
-        // $this->view = new ApiLocomotorasView();
         $this->data = file_get_contents("php://input");
     }
+
     function getData()
     {
         return json_decode($this->data);
@@ -39,7 +38,6 @@ class APILocomotorasController
     public function insertLocomotora()
     {
         $body = $this->getData();
-        // $id_locomotora = $body->id_locomotora;
         $modelo = $body->modelo;
         $anio_fabricacion = $body->anio_fabricacion;
         $lugar_fabricacion = $body->lugar_fabricacion;
@@ -71,6 +69,7 @@ class APILocomotorasController
             $this->view->response("Locomotora con id: " . $id_locomotora . " no fue encontrada", 404);
         }
     }
+
     public function deleteLocomotora($params = [])
     {
         $id_locomotora = $params[":ID"];
@@ -82,6 +81,7 @@ class APILocomotorasController
             $this->view->response("Locomotora con id: " . $id_locomotora . " no fue encontrada", 404);
         }
     }
+
     public function orderByColumna()
     {
         if (isset($_GET['columna']) && isset($_GET['orden'])) {
@@ -118,6 +118,7 @@ class APILocomotorasController
             return $this->view->response("Parametros no seteados", 404);
         }
     }
+    
     public function filterByColumna()
     {
         if (isset($_GET['anio'])) {

@@ -1,6 +1,5 @@
 <?php
 require_once "./Models/vagonesModel.php";
-// require_once "./Views/ApiVagonesView.php";
 require_once "./Views/APIView.php";
 
 

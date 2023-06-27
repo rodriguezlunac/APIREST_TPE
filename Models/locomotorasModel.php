@@ -42,6 +42,7 @@ class locomotorasModel
         $sentencia = $this->db->prepare("UPDATE locomotora SET modelo = ?, anio_fabricacion = ?, lugar_fabricacion = ? WHERE id_locomotora = ? ");
         $sentencia->execute([$modelo, $anio_fabricacion, $lugar_fabricacion, $id_locomotora]);
     }
+    
     public function orderByColumna($columna, $orden){
         $sentencia = $this->db->prepare("SELECT * FROM locomotora order by $columna $orden");
         $sentencia->execute();
@@ -50,6 +51,7 @@ class locomotorasModel
         return $oderByColumna;
 
     }
+
     public function filterByColumna($anio){
         $sentencia=$this->db->prepare("SELECT * FROM locomotora WHERE anio_fabricacion>?");
         $sentencia->execute([$anio]);
