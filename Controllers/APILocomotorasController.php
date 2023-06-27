@@ -121,8 +121,8 @@ class APILocomotorasController
 
     public function filterByColumna()
     {
-        if (isset($_GET['anio'])) {
-            $filterByColumna = $this->model->filterByColumna($_GET['anio']);
+        if (isset($_GET['anio_fabricacion'])) {
+            $filterByColumna = $this->model->filterByColumna($_GET['anio_fabricacion']);
             return $this->view->response($filterByColumna, 200);
         } else {
             return $this->view->response("Parametro no seteado", 404);

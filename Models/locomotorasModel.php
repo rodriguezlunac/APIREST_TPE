@@ -56,8 +56,8 @@ class locomotorasModel
     {
         $sentencia = $this->db->prepare("SELECT * FROM locomotora WHERE anio_fabricacion>?");
         $sentencia->execute([$anio]);
-        $groupByColumna = $sentencia->fetchAll(PDO::FETCH_OBJ);
-        return $groupByColumna;
+        $filterByColumna = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $filterByColumna;
     }
     public function count()
     {
