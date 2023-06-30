@@ -44,13 +44,11 @@ class APILocomotorasController
 
     public function insertLocomotora()
     {
-        //CONTEMPLAR ERROR SI NO INGRESA UN VALOR, HACER CON EL REQUIRED_PARAMS QUE ESTA HECHO EN VAGONES
         $body = $this->getData();
         $modelo = $body->modelo;
         $anio_fabricacion = $body->anio_fabricacion;
         $lugar_fabricacion = $body->lugar_fabricacion;
         if (!empty($modelo) && !empty($anio_fabricacion) && !empty($lugar_fabricacion)) {
-
             $locomotora = $this->model->insertLocomotora($modelo, $anio_fabricacion, $lugar_fabricacion);
             $locomotoraNueva = $this->model->getLocomotora($locomotora);
         }

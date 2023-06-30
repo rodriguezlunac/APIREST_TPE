@@ -2,6 +2,7 @@
 require_once 'libs/Router.php';
 require_once 'Controllers/APILocomotorasController.php';
 require_once 'Controllers/APIVagonesController.php';
+require_once 'Controllers/APIErrorController.php';
 
 define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
 
@@ -45,6 +46,10 @@ $router->addRoute('locomotoras', 'POST', 'APILocomotorasController', 'insertLoco
 $router->addRoute('locomotora/:ID', 'DELETE', 'APILocomotorasController', 'deleteLocomotora');
 //MODIFICA UNA LOCOMOTORA POR ID
 $router->addRoute('locomotora/:ID', 'PUT', 'APILocomotorasController', 'updateLocomotora');
+
+
+//ver como hacer andar el default del router
+$router->addRoute('/', 'GET', 'APIErrorController', 'ErrorDePagina');
 
 // rutea
 $router->route($resource, $method);
