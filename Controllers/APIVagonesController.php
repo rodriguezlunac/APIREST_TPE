@@ -73,11 +73,18 @@ class APIVagonesController
 
     public function updateVagon($params = [])
     {
-        //CONTEMPLAR ERROR SI NO INGRESA UN VALOR, HACER CON EL REQUIRED_PARAMS QUE ESTA HECHO EN INSERT
         $id_vagon = $params[":ID"];
         $vagon = $this->model->getVagon($id_vagon);
         if ($vagon) {
             $body = $this->getData();
+
+            $requiredParams = ['nro_vagon', 'tipo', 'capacidad_max', 'modelo', 'descripcion', 'locomotora_id'];
+            foreach ($requiredParams as $param) {
+                if (!property_exists($body, $param)) {
+                    return $this->view->response("Falta/n parametros", 400);
+                }
+            }
+
             $nro_vagon = $body->nro_vagon;
             $tipo = $body->tipo;
             $capacidad_max = $body->capacidad_max;
@@ -159,7 +166,7 @@ class APIVagonesController
     }
     public function paginado()
     {
-        $cantidad = $this->model->count();
+        $cantidad = $this->model->countPaginas();
         if (isset($_GET['pagina']) && ($_GET['pagina']) <= $cantidad) {
             $pagina = $_GET['pagina'];
             $vagones = $this->model->paginado($pagina);

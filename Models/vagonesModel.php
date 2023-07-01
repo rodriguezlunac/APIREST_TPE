@@ -65,7 +65,8 @@ class vagonesModel
         $groupByColumna = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $groupByColumna;
     }
-    public function count()
+
+    public function countPaginas()
     {
         $sentencia = $this->db->prepare("SELECT ceiling(count(*)/10) as cantidad FROM vagon");
         $sentencia->execute();

@@ -53,12 +53,13 @@ class locomotorasModel
 
     public function filterByColumna($anio)
     {
-        $sentencia = $this->db->prepare("SELECT * FROM locomotora WHERE anio_fabricacion>?");
+        $sentencia = $this->db->prepare("SELECT * FROM locomotora WHERE anio_fabricacion>=?");
         $sentencia->execute([$anio]);
         $filterByColumna = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $filterByColumna;
     }
-    public function count()
+
+    public function countPaginas()
     {
         $sentencia = $this->db->prepare("SELECT ceiling(count(*)/10) as cantidad FROM locomotora");
         $sentencia->execute();

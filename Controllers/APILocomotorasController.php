@@ -45,6 +45,14 @@ class APILocomotorasController
     public function insertLocomotora()
     {
         $body = $this->getData();
+
+        $requiredParams = ['modelo', 'anio_fabricacion', 'lugar_fabricacion'];
+        foreach ($requiredParams as $param) {
+            if (!property_exists($body, $param)) {
+                return $this->view->response("Falta/n parametros", 400);
+            }
+        }
+
         $modelo = $body->modelo;
         $anio_fabricacion = $body->anio_fabricacion;
         $lugar_fabricacion = $body->lugar_fabricacion;
@@ -60,11 +68,17 @@ class APILocomotorasController
 
     public function updateLocomotora($params = [])
     {
-        //CONTEMPLAR ERROR SI NO INGRESA UN VALOR,HACER CON EL REQUIRED_PARAMS QUE ESTA HECHO EN VAGONES
         $id_locomotora = $params[":ID"];
         $locomotora = $this->model->getLocomotora($id_locomotora);
         if ($locomotora) {
             $body = $this->getData();
+
+            $requiredParams = ['modelo', 'anio_fabricacion', 'lugar_fabricacion'];
+            foreach ($requiredParams as $param) {
+                if (!property_exists($body, $param)) {
+                    return $this->view->response("Falta/n parametros", 400);
+                }
+            }        
             $modelo = $body->modelo;
             $anio_fabricacion = $body->anio_fabricacion;
             $lugar_fabricacion = $body->lugar_fabricacion;
@@ -135,9 +149,11 @@ class APILocomotorasController
             return $this->view->response("Parametro no seteado", 400);
         }
     }
+
     public function paginado()
     {
-        $cantidad = $this->model->count();
+        $cantidad = $this->model->countPaginas();
+        
         if (isset($_GET['pagina']) && ($_GET['pagina']) <= $cantidad) {
             $pagina = $_GET['pagina'];
             $locomotoras = $this->model->paginado($pagina);

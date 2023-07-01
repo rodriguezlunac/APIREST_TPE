@@ -79,7 +79,7 @@ Vagones
     Devuelve los vagones con capacidad mayor al valor indicado.
     Por ejemplo: http://localhost/carpeta/APIREST_TPE/api/vagones/filtro?capacidad_max=20000
 
-8. MÉTODO GET. Para paginar los vagones.:
+8. MÉTODO GET. Para paginar los vagones:
     URL/vagones/paginado?pagina=
     El parámetro "pagina=" puede tomar números enteros, si la página no existe se va a indicar como un error.
     http://localhost/carpeta/APIREST_TPE/api/vagones/paginado?pagina=1
