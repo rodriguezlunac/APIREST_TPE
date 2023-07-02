@@ -10,7 +10,7 @@ class APIErrorController{
         $this->view = new APIView();
     }
 
-    public function ErrorDePagina(){
+    public function default(){
         $this->view->response("URL invalida", 404);
     }
 }

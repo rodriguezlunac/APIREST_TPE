@@ -46,10 +46,8 @@ $router->addRoute('locomotoras', 'POST', 'APILocomotorasController', 'insertLoco
 $router->addRoute('locomotora/:ID', 'DELETE', 'APILocomotorasController', 'deleteLocomotora');
 //MODIFICA UNA LOCOMOTORA POR ID
 $router->addRoute('locomotora/:ID', 'PUT', 'APILocomotorasController', 'updateLocomotora');
-
-
-//ver como hacer andar el default del router
-$router->addRoute('/', 'GET', 'APIErrorController', 'ErrorDePagina');
+//DEFAULT
+$router->setDefaultRoute('APIErrorController', 'default');
 
 // rutea
 $router->route($resource, $method);
