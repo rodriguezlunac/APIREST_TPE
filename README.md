@@ -1,57 +1,111 @@
 ## Documentación de API REST TPE
 [TOC]
-###Locomotoras
+### Locomotoras
 
-####Listar todos las locomotoras
+#### Listar todos las locomotoras
 
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
+| `GET`      | vagones     |http://localhost/carpeta/APIREST_TPE/api/locomotoras|
+
+#### Listar una locomotora por id
+
+| VERBO | RECURSO                   | URI|
+| ------------- | ---------------- |--------------|
+| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/|
+
+#### Eliminar una locomotora por id
+
+| VERBO | RECURSO                   | URI|
+| ------------- | ---------------- |--------------|
+| `DELETE`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/|
+
+#### Modificar una locomotora por id
+
+| VERBO | RECURSO                   | URI|
+| ------------- | ---------------- |--------------|
+| `PUT`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/|
+
+#### Ingresar una locomotora
+
+| VERBO | RECURSO                   | URI|
+| ------------- | ---------------- |--------------|
+| `POST`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras|
+
+#### Ordenar las locomotoras por columna y orden
+
+| VERBO | RECURSO                   | URI|
+| ------------- | ---------------- |--------------|
+| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras/ordenadas?columna=&orden=|
+
+#### Filtrar por año de fabricación mayor a un valor dado
+
+| VERBO | RECURSO                   | URI|
+| ------------- | ---------------- |--------------|
+| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras/filtro?anio_fabricacion=|
+
+#### Paginado de locomotoras
+
+| VERBO | RECURSO                   | URI|
+| ------------- | ---------------- |--------------|
+| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras/paginado?pagina=|
+
+#### Resumen
+
+| VERBO | RECURSO                   | URI|
+| ------------- | ---------------- |--------------|
+| `GET`      | vagones     |http://localhost/carpeta/APIREST_TPE/api/locomotoras|
+| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/|
+| `DELETE`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/|
+| `PUT`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/|
+| `POST`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras|
+| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras/ordenadas?columna=&orden=|
+| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras/filtro?anio_fabricacion=|
+| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras/paginado?pagina=|
+
+
+
+### Vagones
+#### Listar todos los vagones
+| VERBO | RECURSO                   | URI|
+| ------------- | ---------------- |--------------|
 | `GET`      | vagones     |http://localhost/carpeta/APIREST_TPE/api/vagones|
-
-####Listar una locomotora por id
-
+#### Listar un vagón por id
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagon/|
 
-####Eliminar una locomotora por id
-
+#### Eliminar un vagón por id
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `DELETE`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagon/|
 
-####Modificar una locomotora por id
-
+#### Modificar un vagón por id
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
-| `PUT`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagon/|
+| `DELETE`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagon/|
 
-####Ingresar una locomotora
+#### Ingresar un vagón
 
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `POST`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones|
-
-####Ordenar las locomotoras por columna y orden
-
+#### Ordenar los vagones por columna y orden
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
-| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones/ordenados?columna=&orden=|
+| `POST`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones|
 
-####Filtrar por año de fabricación mayor a un valor dado
-
+#### Filtrar por capacidad máxima mayor a un valor dado
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones/filtro?capacidad_max=|
 
-####Paginado de locomotoras
-
+#### Paginado de locomotoras
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones/paginado?pagina=|
 
-####Resumen
-
+#### Resumen
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `GET`      | vagones     |http://localhost/carpeta/APIREST_TPE/api/vagones|
@@ -62,19 +116,6 @@
 | `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones/ordenados?columna=&orden=|
 | `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones/filtro?capacidad_max=|
 | `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones/paginado?pagina=|
-
-
-
-###Vagones
-####Listar todos los vagones
-####Listar un vagón por id
-####Eliminar un vagón por id
-####Modificar un vagón por id
-####Ingresar un vagón
-####Ordenar los vagones por columna y orden
-####Filtrar por capacidad máxima mayor a un valor dado
-####Paginado de locomotoras
-####Resumen
 
 
 # APIREST_TPE
