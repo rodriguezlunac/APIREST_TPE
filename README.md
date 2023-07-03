@@ -19,12 +19,18 @@ Por ejemplo:
 
 http://localhost/carpeta/APIREST_TPE/api/locomotora/1
 
-Si la URI es correcta, es decir, el id existe, el código de error será `200 Solicitud exitosa` y se mostrara en pantalla el vagón solicitado, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que el vagón con el id solicitado no existe, se deberá corregir para poder mostrar lo solicitado.
+Si la URI es correcta, es decir, el id existe, el código de error será `200 Solicitud exitosa` y se mostrará en pantalla el vagón solicitado, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que el vagón con el id solicitado no existe, se deberá corregir para poder mostrar lo solicitado.
 #### Eliminar una locomotora por id
 Elimina una locomotora seleccionada por su id.
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `DELETE`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/|
+
+Por ejemplo:
+
+http://localhost/carpeta/APIREST_TPE/api/locomotora/1
+
+Si la URI es correcta, es decir, el id existe, el código de error será `200 Solicitud exitosa` y se mostrará en pantalla un mensaje que diga que el vagón con el id correspondiente ha sido eliminado con exito, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que el vagón con el id solicitado no existe, se deberá corregir para poder mostrar lo solicitado.
 #### Modificar una locomotora por id
 Para modificar un vagon debemos 'rellenar' el body de la siguiente manera, completanto todos los campos respetando su tipo:
 | VERBO | RECURSO                   | URI|
@@ -44,6 +50,9 @@ Formato para escribir en el body:
 - "lugar_fabricacion" tipo varchar.
 
 Por ejemplo
+
+http://localhost/carpeta/APIREST_TPE/api/locomotora/1
+
 ```javascript
     {
         "modelo": "XPO-789",
@@ -51,6 +60,8 @@ Por ejemplo
         "lugar_fabricacion": "Argentina"
     }
 ```
+
+Si la URI es correcta, es decir, el id existe y el body se completo correctamente el código de error será `200 Solicitud exitosa` y se mostrará en pantalla un mensaje que diga que el vagón con el id correspondiente ha sido modificado con exito, por el contrario el código de error será `400 El servidor no puede procesar la petición debido a un error del cliente` mostrando en pantalla el mensaje parametros no seteados y si la "columna" y/o "orden" no exiten el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla columna y/o roden inexistente, esto se deberá corregir para poder realizar la petición correctamente.
 #### Ingresar una locomotora
 Para ingresar un vagon debemos 'rellenar' el body de la siguiente manera, completanto todos los campos respetando su tipo:
 | VERBO | RECURSO                   | URI|
@@ -68,8 +79,10 @@ Formato para escribir en el body:
 - "modelo" tipo varchar,
 - "anio_fabricacion" tipo int,
 - "lugar_fabricacion" tipo varchar.
-
 Por ejemplo
+
+http://localhost/carpeta/APIREST_TPE/api/locomotora/1
+
 ```javascript
     {
         "modelo": "XPO-789",
@@ -77,6 +90,8 @@ Por ejemplo
         "lugar_fabricacion": "Argentina"
     }
 ```
+
+Si la URI es correcta, es decir, el id existe y el body se completo correctamente el código de error será `200 Solicitud exitosa` y se mostrará en pantalla un mensaje que diga que el vagón con el id correspondiente ha sido modificado con exito, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que el vagón con el id solicitado no existe o que faltan parametros para completar la solicitud, esto se deberá corregir para poder realizarla.
 #### Ordenar las locomotoras por columna y orden
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
@@ -157,9 +172,18 @@ Por ejemplo:
 ```
 
 #### Ordenar los vagones por columna y orden
+Ordena todos los vagones por una columna seleccionada y en un determinado orden, los valores que pueden tomar son:
+- Parametro columna= "anio_fabricacion", "modelo" o "lugar_fabricacion".
+- Parametro orden= "asc" o "desc".
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `POST`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones|
+
+Por ejemplo:
+http://localhost/carpeta/APIREST_TPE/api/vagones/ordenados?columna=modelo&orden=asc
+
+Si la URI es correcta, es decir, se encuentras seteados los parametros "columna" y "orden" con valores correctos el código de error será `200 Solicitud exitosa` y se mostrará en pantalla los vagones ordenados con esas condiciones, por el contrario, si los parametros no estan seteados, es decir, el código de error será `400 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que el vagón con el id solicitado no existe o que faltan parametros para completar la solicitud, esto se deberá corregir para poder realizarla.
+
 #### Filtrar por capacidad máxima mayor a un valor dado
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
