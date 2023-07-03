@@ -150,20 +150,20 @@ class APILocomotorasController
             return $this->view->response("Parametro no seteado", 400);
         }
     }
-  
+
     public function paginado()
     {
         $cantidad = $this->model->countPaginas();
         if (isset($_GET['pagina']) && (is_numeric(($_GET['pagina'])))) {
             $pagina = $_GET['pagina'];
-            if ($pagina>0 &&  $pagina <= $cantidad) {
+            if ($pagina > 0 &&  $pagina <= $cantidad) {
                 $locomotoras = $this->model->paginado($pagina);
                 return $this->view->response($locomotoras, 200);
             } else {
                 return $this->view->response("No existe la pagina número " . $_GET['pagina'], 404);
             }
         } else {
-            return $this->view->response("Parametro no seteado o sin valor", 400);
+            return $this->view->response("Parametro no seteado", 404);
         }
     }
 }

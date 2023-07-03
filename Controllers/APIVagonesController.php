@@ -198,7 +198,7 @@ class APIVagonesController
                 return $this->view->response("No existe la pagina número " . $_GET['pagina'], 404);
             }
         } else {
-            return $this->view->response("No existe la pagina número " . $_GET['pagina'], 404);
+            return $this->view->response("Parametro no seteado", 404);
         }
     }
 }
