@@ -3,7 +3,6 @@ require_once "./Models/vagonesModel.php";
 require_once "./Views/APIView.php";
 require_once "./Models/locomotorasModel.php";
 
-//VER QUE SIEMPRE TIRA 500 EN POSTMAN POR MAS QUE ANDE
 class APIVagonesController
 {
     private $model;
@@ -26,7 +25,6 @@ class APIVagonesController
 
     public function get($params = [])
     {
-        //FALTA CONTEMPLAR LA URI /VAGONES/456 TIENE QUE TIRAR ERROR
         if (empty($params)) {
             $vagones = $this->model->getVagones();
             if (!empty($vagones)) {
@@ -56,7 +54,6 @@ class APIVagonesController
                 return $this->view->response("Falta/n parametros", 400);
             }
         }
-
         $nro_vagon = $body->nro_vagon;
         $tipo = $body->tipo;
         $capacidad_max = $body->capacidad_max;
@@ -66,7 +63,6 @@ class APIVagonesController
         $locomotora = $this->locomotorasModel->getLocomotora($locomotora_id);
         if ($locomotora) {
             if (!is_null($nro_vagon) && !is_null($tipo) && !is_null($capacidad_max) && !is_null($modelo) && !is_null($descripcion) && !is_null($locomotora_id) && is_numeric($nro_vagon) && is_numeric($capacidad_max) && $capacidad_max > 0) {
-
                 $vagon = $this->model->insertVagon($nro_vagon, $tipo, $capacidad_max, $modelo, $descripcion, $locomotora_id);
                 $vagonNuevo = $this->model->getVagon($vagon);
                 if ($vagonNuevo) {
@@ -77,7 +73,6 @@ class APIVagonesController
             } else {
                 $this->view->response("Error al insertar el vagón", 400);
             }
-
         } else {
             $this->view->response("Error al insertar el vagón, la locomotora con id " . $locomotora_id . " no existe", 400);
         }
@@ -98,7 +93,6 @@ class APIVagonesController
                     return $this->view->response("Falta/n parametros", 400);
                 }
             }
-
             $nro_vagon = $body->nro_vagon;
             $tipo = $body->tipo;
             $capacidad_max = $body->capacidad_max;
@@ -108,7 +102,6 @@ class APIVagonesController
             $locomotora = $this->locomotorasModel->getLocomotora($locomotora_id);
             if ($locomotora) {
                 if (!is_null($nro_vagon) && !is_null($tipo) && !is_null($capacidad_max) && !is_null($modelo) && !is_null($descripcion) && !is_null($locomotora_id) && is_numeric($nro_vagon) && is_numeric($capacidad_max) && ($capacidad_max > 0)) {
-
                     $vagon = $this->model->updateVagon($id_vagon, $nro_vagon, $tipo, $capacidad_max, $modelo, $descripcion, $locomotora_id);
                     $this->view->response("Vagón con id: " . $id_vagon . " fue modificado con exito", 200);
                 } else {

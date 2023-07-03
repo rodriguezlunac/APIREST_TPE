@@ -2,7 +2,6 @@
 require_once "./Models/locomotorasModel.php";
 require_once "./Views/APIView.php";
 
-//VER QUE SIEMPRE TIRA 500 EN POSTMAN POR MAS QUE ANDE
 class APILocomotorasController
 {
     private $model;
@@ -23,7 +22,6 @@ class APILocomotorasController
 
     function get($params = [])
     {
-        //FALTA CONTEMPLAR LA URI /LOCOMOTORAS/456 TIENE QUE TIRAR ERROR
         if (empty($params)) {
 
             $locomotoras = $this->model->getLocomotoras();
@@ -154,7 +152,6 @@ class APILocomotorasController
 
     public function filterByColumna()
     {
-        // var_dump(is_numeric($_GET['anio_fabricacion']));
         if (isset($_GET['anio_fabricacion']) && (is_numeric($_GET['anio_fabricacion']))) {
             $filterByColumna = $this->model->filterByColumna($_GET['anio_fabricacion']);
             return $this->view->response($filterByColumna, 200);
