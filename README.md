@@ -22,6 +22,7 @@ Para modificar un vagon debemos 'rellenar' el body de la siguiente manera, compl
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `PUT`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/|
+
 Formato para escribir en el body:
 ```javascript
  {
@@ -46,6 +47,7 @@ Para ingresar un vagon debemos 'rellenar' el body de la siguiente manera, comple
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `POST`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras|
+
 Formato para escribir en el body:
 ```javascript
  {
@@ -110,6 +112,7 @@ Para insertar un vagon debemos 'rellenar' el body de la siguiente manera, comple
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `POST`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones|
+
 Formato para escribir en el body:
 ```javascript
 
