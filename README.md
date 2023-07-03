@@ -3,26 +3,66 @@
 [TOC]
 ### Locomotoras
 #### Listar todos las locomotoras
+Muestra todas las locomotoras con sus respectivos campos.
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `GET`      | vagones     |http://localhost/carpeta/APIREST_TPE/api/locomotoras|
 #### Listar una locomotora por id
+Muestra una locomotora seleccionada por su id con sus respectivos campos.
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/|
 #### Eliminar una locomotora por id
+Elimina una locomotora seleccionada por su id.
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `DELETE`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/|
 #### Modificar una locomotora por id
-
+Para modificar un vagon debemos 'rellenar' el body de la siguiente manera, completanto todos los campos respetando su tipo:
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `PUT`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/|
+```javascript
+ {
+        "modelo": "",
+        "anio_fabricacion": ,
+        "lugar_fabricacion": ""
+    }
+```
+- "modelo" tipo varchar,
+- "anio_fabricacion" tipo int,
+- "lugar_fabricacion" tipo varchar.
+    Por ejemplo
+```javascript
+    {
+        "modelo": "XPO-789",
+        "anio_fabricacion": 1920,
+        "lugar_fabricacion": "Argentina"
+    }
+```
 #### Ingresar una locomotora
+Para ingresar un vagon debemos 'rellenar' el body de la siguiente manera, completanto todos los campos respetando su tipo:
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `POST`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras|
+```javascript
+ {
+        "modelo": "",
+        "anio_fabricacion": ,
+        "lugar_fabricacion": ""
+    }
+```
+- "modelo" tipo varchar,
+- "anio_fabricacion" tipo int,
+- "lugar_fabricacion" tipo varchar.
+    Por ejemplo
+```javascript
+    {
+        "modelo": "XPO-789",
+        "anio_fabricacion": 1920,
+        "lugar_fabricacion": "Argentina"
+    }
+```
 #### Ordenar las locomotoras por columna y orden
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
@@ -77,12 +117,12 @@ Para insertar un vagon debemos 'rellenar' el body de la siguiente manera, comple
     }
 
 ```
-"nro_vagon" tipo int, 
-"tipo" tipo varchar,
-"capacidad_max" tipo int,
-"modelo" tipo varchar,
-"descripcion" tipo varchar,
-"locomotora_id" tipo int.
+- "nro_vagon" tipo int, 
+- "tipo" tipo varchar,
+- "capacidad_max" tipo int,
+- "modelo" tipo varchar,
+- "descripcion" tipo varchar,
+- "locomotora_id" tipo int.
 Por ejemplo:
 ```javascript
 
