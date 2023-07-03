@@ -66,7 +66,7 @@ class APIVagonesController
                 $vagon = $this->model->insertVagon($nro_vagon, $tipo, $capacidad_max, $modelo, $descripcion, $locomotora_id);
                 $vagonNuevo = $this->model->getVagon($vagon);
                 if ($vagonNuevo) {
-                    return $this->view->response("Se ha insertado un nuevo vagón correctamente", 200);
+                    return $this->view->response("Se ha insertado un nuevo vagón correctamente", 201);
                 } else {
                     $this->view->response("Error al insertar el vagón", 400);
                 }
@@ -103,7 +103,7 @@ class APIVagonesController
             if ($locomotora) {
                 if (!is_null($nro_vagon) && !is_null($tipo) && !is_null($capacidad_max) && !is_null($modelo) && !is_null($descripcion) && !is_null($locomotora_id) && is_numeric($nro_vagon) && is_numeric($capacidad_max) && ($capacidad_max > 0)) {
                     $vagon = $this->model->updateVagon($id_vagon, $nro_vagon, $tipo, $capacidad_max, $modelo, $descripcion, $locomotora_id);
-                    $this->view->response("Vagón con id: " . $id_vagon . " fue modificado con exito", 200);
+                    $this->view->response("Vagón con id: " . $id_vagon . " fue modificado con exito", 201);
                 } else {
                     $this->view->response("Error al insertar el vagón", 400);
                 }
@@ -132,7 +132,6 @@ class APIVagonesController
             $columna = '';
             $orden = '';
             switch ($_GET['columna']) {
-
                 case 'nro_vagon':
                     $columna = 'nro_vagon';
                     break;

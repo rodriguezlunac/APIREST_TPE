@@ -1,5 +1,6 @@
 <?php
-class APIView{
+class APIView
+{
     public function response($data, $status)
     {
         header("Content-Type: application/json");
