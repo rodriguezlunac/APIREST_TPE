@@ -8,7 +8,7 @@ class APIVagonesController
     private $model;
     private $view;
     private $data;
-    
+
     function __construct()
     {
         $this->model = new vagonesModel();
@@ -164,6 +164,8 @@ class APIVagonesController
             return $this->view->response("Parametro no seteado", 400);
         }
     }
+    //VER INYECCION
+
     public function paginado()
     {
         $cantidad = $this->model->countPaginas();

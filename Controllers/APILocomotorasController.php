@@ -78,7 +78,7 @@ class APILocomotorasController
                 if (!property_exists($body, $param)) {
                     return $this->view->response("Falta/n parametros", 400);
                 }
-            }        
+            }
             $modelo = $body->modelo;
             $anio_fabricacion = $body->anio_fabricacion;
             $lugar_fabricacion = $body->lugar_fabricacion;
@@ -149,17 +149,25 @@ class APILocomotorasController
             return $this->view->response("Parametro no seteado", 400);
         }
     }
-
+    //VER INYECCION, soluciono?
     public function paginado()
     {
         $cantidad = $this->model->countPaginas();
-        
-        if (isset($_GET['pagina']) && ($_GET['pagina']) <= $cantidad) {
+        if (isset($_GET['pagina']) && ($_GET['pagina'] !== '')) {
             $pagina = $_GET['pagina'];
-            $locomotoras = $this->model->paginado($pagina);
-            return $this->view->response($locomotoras, 200);
+            for ($pag = 1; $pag <= $cantidad; $pag++) {
+                if ($pag == $pagina) {
+                    $locomotoras = $this->model->paginado($pagina);
+                    return $this->view->response($locomotoras, 200);
+                } else {
+                    $pag = $pag;
+                    if ($pag >= $cantidad) {
+                        return $this->view->response("No existe la pagina número " . $_GET['pagina'], 404);
+                    }
+                }
+            }
         } else {
-            return $this->view->response("No existe la pagina número " . $_GET['pagina'], 404);
+            return $this->view->response("Parametro no seteado o sin valor", 400);
         }
     }
 }
