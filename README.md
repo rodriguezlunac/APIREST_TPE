@@ -133,7 +133,7 @@ Formato para escribir en el body:
 - "descripcion" tipo varchar,
 - "locomotora_id" tipo int.
 
-Por ejemplo:
+  Por ejemplo:
 ```javascript
 
   {
