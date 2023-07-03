@@ -1,18 +1,21 @@
 <?php
 require_once "./Models/vagonesModel.php";
 require_once "./Views/APIView.php";
+require_once "./Models/locomotorasModel.php";
 
 //VER QUE SIEMPRE TIRA 500 EN POSTMAN POR MAS QUE ANDE
 class APIVagonesController
 {
     private $model;
     private $view;
+    private $locomotorasModel;
     private $data;
 
     function __construct()
     {
         $this->model = new vagonesModel();
         $this->view = new APIView();
+        $this->locomotorasModel = new locomotorasModel();
         $this->data = file_get_contents("php://input");
     }
 
@@ -51,6 +54,7 @@ class APIVagonesController
                 return $this->view->response("Falta/n parametros", 400);
             }
         }
+
         // Obtener los valores de los parámetros
         $nro_vagon = $body->nro_vagon;
         $tipo = $body->tipo;
@@ -58,17 +62,26 @@ class APIVagonesController
         $modelo = $body->modelo;
         $descripcion = $body->descripcion;
         $locomotora_id = $body->locomotora_id;
-        // Insertar el vagón en la base de datos
-        $vagon = $this->model->insertVagon($nro_vagon, $tipo, $capacidad_max, $modelo, $descripcion, $locomotora_id);
-        // Verificar si la inserción fue exitosa
-        if ($vagon) {
-            $vagonNuevo = $this->model->getVagon($vagon);
-            if ($vagonNuevo) {
-                return $this->view->response("Se ha insertado un nuevo vagón correctamente", 200);
-            } else {
-                $this->view->response("Error al insertar tarea", 400);
+        $locomotora = $this->locomotorasModel->getLocomotora($locomotora_id);
+        if ($locomotora) {
+            $vagon = $this->model->insertVagon($nro_vagon, $tipo, $capacidad_max, $modelo, $descripcion, $locomotora_id);
+            // Verificar si la inserción fue exitosa
+            if ($vagon) {
+                $vagonNuevo = $this->model->getVagon($vagon);
+                if ($vagonNuevo) {
+                    return $this->view->response("Se ha insertado un nuevo vagón correctamente", 200);
+                } else {
+                    $this->view->response("Error al insertar el vagón", 400);
+                }
             }
+        } else {
+            $this->view->response("Error al insertar el vagón, la locomotora con id " . $locomotora_id . " no existe", 400);
         }
+// if($locomotora){
+
+// }
+        // Insertar el vagón en la base de datos
+        
     }
 
     public function updateVagon($params = [])
@@ -91,8 +104,15 @@ class APIVagonesController
             $modelo = $body->modelo;
             $descripcion = $body->descripcion;
             $locomotora_id = $body->locomotora_id;
-            $vagon = $this->model->updateVagon($id_vagon, $nro_vagon, $tipo, $capacidad_max, $modelo, $descripcion, $locomotora_id);
-            $this->view->response("Vagón con id: " . $id_vagon . " fue modificado con exito", 200);
+            $locomotora = $this->locomotorasModel->getLocomotora($locomotora_id);
+            if ($locomotora) {
+
+                $vagon = $this->model->updateVagon($id_vagon, $nro_vagon, $tipo, $capacidad_max, $modelo, $descripcion, $locomotora_id);
+                $this->view->response("Vagón con id: " . $id_vagon . " fue modificado con exito", 200);
+            }
+            else {
+                $this->view->response("Error al modificar el vagón, la locomotora con id " . $locomotora_id . " no existe", 400);
+            }
         } else {
             $this->view->response("Vagón con id: " . $id_vagon . " no fue encontrado", 404);
         }
