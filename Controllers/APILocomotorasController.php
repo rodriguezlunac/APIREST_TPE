@@ -142,29 +142,25 @@ class APILocomotorasController
 
     public function filterByColumna()
     {
-        if (isset($_GET['anio_fabricacion'])) {
+        // var_dump(is_numeric($_GET['anio_fabricacion']));
+        if (isset($_GET['anio_fabricacion']) && (is_numeric($_GET['anio_fabricacion']))) {
             $filterByColumna = $this->model->filterByColumna($_GET['anio_fabricacion']);
             return $this->view->response($filterByColumna, 200);
         } else {
             return $this->view->response("Parametro no seteado", 400);
         }
     }
-    //VER INYECCION, soluciono?
+  
     public function paginado()
     {
         $cantidad = $this->model->countPaginas();
-        if (isset($_GET['pagina']) && ($_GET['pagina'] !== '')) {
+        if (isset($_GET['pagina']) && (is_numeric(($_GET['pagina'])))) {
             $pagina = $_GET['pagina'];
-            for ($pag = 1; $pag <= $cantidad; $pag++) {
-                if ($pag == $pagina) {
-                    $locomotoras = $this->model->paginado($pagina);
-                    return $this->view->response($locomotoras, 200);
-                } else {
-                    $pag = $pag;
-                    if ($pag >= $cantidad) {
-                        return $this->view->response("No existe la pagina número " . $_GET['pagina'], 404);
-                    }
-                }
+            if ($pagina>0 &&  $pagina <= $cantidad) {
+                $locomotoras = $this->model->paginado($pagina);
+                return $this->view->response($locomotoras, 200);
+            } else {
+                return $this->view->response("No existe la pagina número " . $_GET['pagina'], 404);
             }
         } else {
             return $this->view->response("Parametro no seteado o sin valor", 400);

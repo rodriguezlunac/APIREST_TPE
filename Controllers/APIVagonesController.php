@@ -177,22 +177,26 @@ class APIVagonesController
     }
     public function filterByColumna()
     {
-        if (isset($_GET['capacidad_max'])) {
+        if (isset($_GET['capacidad_max'])&& (is_numeric($_GET['capacidad_max']))) {
             $filterColumna = $this->model->filterByColumna($_GET['capacidad_max']);
             return $this->view->response($filterColumna, 200);
         } else {
             return $this->view->response("Parametro no seteado", 400);
         }
     }
-    //VER INYECCION
-
+ 
     public function paginado()
     {
         $cantidad = $this->model->countPaginas();
-        if (isset($_GET['pagina']) && ($_GET['pagina']) <= $cantidad) {
+        if (isset($_GET['pagina']) && (is_numeric(($_GET['pagina'])))) {
             $pagina = $_GET['pagina'];
-            $vagones = $this->model->paginado($pagina);
-            return $this->view->response($vagones, 200);
+            if ($pagina>0 && $pagina <= $cantidad ) {
+                $vagones = $this->model->paginado($pagina);
+                return $this->view->response($vagones, 200);
+            }
+            else {
+                return $this->view->response("No existe la pagina número " . $_GET['pagina'], 404);
+            }
         } else {
             return $this->view->response("No existe la pagina número " . $_GET['pagina'], 404);
         }
