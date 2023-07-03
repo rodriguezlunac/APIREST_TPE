@@ -1,7 +1,7 @@
 ## Documentación de API REST TPE
 
 ### Locomotoras
-***#### Listar todos las locomotoras***
+#### ***Listar todos las locomotoras***
 
 Muestra todas las locomotoras con sus respectivos campos.
 | VERBO | RECURSO                   | URI|
