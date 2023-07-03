@@ -15,6 +15,7 @@
 | ------------- | ---------------- |--------------|
 | `DELETE`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/|
 #### Modificar una locomotora por id
+
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `PUT`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/|
@@ -63,6 +64,37 @@
 | ------------- | ---------------- |--------------|
 | `DELETE`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagon/|
 #### Ingresar un vagón
+Para insertar un vagon debemos 'rellenar' el body de la siguiente manera, completanto todos los campos respetando su tipo:
+```javascript
+
+ {
+        "nro_vagon": ,
+        "tipo": "",
+        "capacidad_max": ,
+        "modelo": "",
+        "descripcion": "",
+        "locomotora_id": 
+    }
+
+```
+"nro_vagon" tipo int, 
+"tipo" tipo varchar,
+"capacidad_max" tipo int,
+"modelo" tipo varchar,
+"descripcion" tipo varchar,
+"locomotora_id" tipo int.
+Por ejemplo:
+```javascript
+
+  {
+        "nro_vagon": 123,
+        "tipo": "Comercial",
+        "capacidad_max": 5000,
+        "modelo": "LB-789",
+        "descripcion": "Vagon comercial",
+        "locomotora_id": 48
+    }
+```
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `POST`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones|
