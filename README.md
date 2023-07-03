@@ -82,7 +82,7 @@ Formato para escribir en el body:
 - "modelo" tipo varchar,
 - "anio_fabricacion" tipo int,
 - "lugar_fabricacion" tipo varchar.
-Por ejemplo
+Por ejemplo:
 
 http://localhost/carpeta/APIREST_TPE/api/locomotora/1
 
