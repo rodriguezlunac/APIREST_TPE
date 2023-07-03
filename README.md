@@ -1,6 +1,5 @@
 ## Documentación de API REST TPE
 
-[TOC]
 ### Locomotoras
 #### Listar todos las locomotoras
 Muestra todas las locomotoras con sus respectivos campos.
