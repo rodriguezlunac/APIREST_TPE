@@ -46,6 +46,9 @@ class APILocomotorasController
     {
         $body = $this->getData();
 
+        if (is_null($body)) {
+            return $this->view->response("Error en los datos para ingresar una locomotora", 400);
+        }
         $requiredParams = ['modelo', 'anio_fabricacion', 'lugar_fabricacion'];
         foreach ($requiredParams as $param) {
             if (!property_exists($body, $param)) {
@@ -56,14 +59,17 @@ class APILocomotorasController
         $modelo = $body->modelo;
         $anio_fabricacion = $body->anio_fabricacion;
         $lugar_fabricacion = $body->lugar_fabricacion;
-        if (!empty($modelo) && !empty($anio_fabricacion) && !empty($lugar_fabricacion)) {
+        if (!is_null($modelo) && !is_null($anio_fabricacion) && !is_null($lugar_fabricacion) && is_numeric($anio_fabricacion) && $anio_fabricacion > 0 && $anio_fabricacion <= 2023) {
             $locomotora = $this->model->insertLocomotora($modelo, $anio_fabricacion, $lugar_fabricacion);
             $locomotoraNueva = $this->model->getLocomotora($locomotora);
-        }
-        if ($locomotoraNueva)
-            $this->view->response("Se ha insertado una nueva locomotora correctamente", 201);
-        else
+            if ($locomotoraNueva) {
+                $this->view->response("Se ha insertado una nueva locomotora correctamente", 201);
+            } else {
+                $this->view->response("Error al insertar locomotora", 400);
+            }
+        } else {
             $this->view->response("Error al insertar locomotora", 400);
+        }
     }
 
     public function updateLocomotora($params = [])
@@ -72,7 +78,9 @@ class APILocomotorasController
         $locomotora = $this->model->getLocomotora($id_locomotora);
         if ($locomotora) {
             $body = $this->getData();
-
+            if (is_null($body)) {
+                return $this->view->response("Error en los datos para modificar una locomotora", 400);
+            }
             $requiredParams = ['modelo', 'anio_fabricacion', 'lugar_fabricacion'];
             foreach ($requiredParams as $param) {
                 if (!property_exists($body, $param)) {
@@ -82,9 +90,13 @@ class APILocomotorasController
             $modelo = $body->modelo;
             $anio_fabricacion = $body->anio_fabricacion;
             $lugar_fabricacion = $body->lugar_fabricacion;
-            if (!empty($modelo) && !empty($anio_fabricacion) && !empty($lugar_fabricacion)) {
+            if (!is_null($modelo) && !is_null($anio_fabricacion) && !is_null($lugar_fabricacion) && is_numeric($anio_fabricacion) && $anio_fabricacion > 0 && $anio_fabricacion <= 2023) {
                 $locomotora = $this->model->updateLocomotora($id_locomotora, $modelo, $anio_fabricacion, $lugar_fabricacion);
                 $this->view->response("Locomotora con id: " . $id_locomotora . " fue modificada con exito", 201);
+            }
+            else{
+                $this->view->response("Error al insertar locomotora", 400);
+
             }
         } else {
             $this->view->response("Locomotora con id: " . $id_locomotora . " no fue encontrada", 404);

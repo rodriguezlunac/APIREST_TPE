@@ -47,7 +47,9 @@ class APIVagonesController
     public function insertVagon()
     {
         $body = $this->getData();
-        // Verificar si se proporcionan todos los parámetros necesarios
+        if (is_null($body)) {
+            return $this->view->response("Error en los datos para ingresar un vagon", 400);
+        }
         $requiredParams = ['nro_vagon', 'tipo', 'capacidad_max', 'modelo', 'descripcion', 'locomotora_id'];
         foreach ($requiredParams as $param) {
             if (!property_exists($body, $param)) {
@@ -55,7 +57,6 @@ class APIVagonesController
             }
         }
 
-        // Obtener los valores de los parámetros
         $nro_vagon = $body->nro_vagon;
         $tipo = $body->tipo;
         $capacidad_max = $body->capacidad_max;
@@ -64,24 +65,22 @@ class APIVagonesController
         $locomotora_id = $body->locomotora_id;
         $locomotora = $this->locomotorasModel->getLocomotora($locomotora_id);
         if ($locomotora) {
-            $vagon = $this->model->insertVagon($nro_vagon, $tipo, $capacidad_max, $modelo, $descripcion, $locomotora_id);
-            // Verificar si la inserción fue exitosa
-            if ($vagon) {
+            if (!is_null($nro_vagon) && !is_null($tipo) && !is_null($capacidad_max) && !is_null($modelo) && !is_null($descripcion) && !is_null($locomotora_id) && is_numeric($nro_vagon) && is_numeric($capacidad_max) && $capacidad_max > 0) {
+
+                $vagon = $this->model->insertVagon($nro_vagon, $tipo, $capacidad_max, $modelo, $descripcion, $locomotora_id);
                 $vagonNuevo = $this->model->getVagon($vagon);
                 if ($vagonNuevo) {
                     return $this->view->response("Se ha insertado un nuevo vagón correctamente", 200);
                 } else {
                     $this->view->response("Error al insertar el vagón", 400);
                 }
+            } else {
+                $this->view->response("Error al insertar el vagón", 400);
             }
+
         } else {
             $this->view->response("Error al insertar el vagón, la locomotora con id " . $locomotora_id . " no existe", 400);
         }
-// if($locomotora){
-
-// }
-        // Insertar el vagón en la base de datos
-        
     }
 
     public function updateVagon($params = [])
@@ -90,7 +89,9 @@ class APIVagonesController
         $vagon = $this->model->getVagon($id_vagon);
         if ($vagon) {
             $body = $this->getData();
-
+            if (is_null($body)) {
+                return $this->view->response("Error en los datos para modificar un vagon", 400);
+            }
             $requiredParams = ['nro_vagon', 'tipo', 'capacidad_max', 'modelo', 'descripcion', 'locomotora_id'];
             foreach ($requiredParams as $param) {
                 if (!property_exists($body, $param)) {
@@ -106,11 +107,14 @@ class APIVagonesController
             $locomotora_id = $body->locomotora_id;
             $locomotora = $this->locomotorasModel->getLocomotora($locomotora_id);
             if ($locomotora) {
+                if (!is_null($nro_vagon) && !is_null($tipo) && !is_null($capacidad_max) && !is_null($modelo) && !is_null($descripcion) && !is_null($locomotora_id) && is_numeric($nro_vagon) && is_numeric($capacidad_max) && ($capacidad_max > 0)) {
 
-                $vagon = $this->model->updateVagon($id_vagon, $nro_vagon, $tipo, $capacidad_max, $modelo, $descripcion, $locomotora_id);
-                $this->view->response("Vagón con id: " . $id_vagon . " fue modificado con exito", 200);
-            }
-            else {
+                    $vagon = $this->model->updateVagon($id_vagon, $nro_vagon, $tipo, $capacidad_max, $modelo, $descripcion, $locomotora_id);
+                    $this->view->response("Vagón con id: " . $id_vagon . " fue modificado con exito", 200);
+                } else {
+                    $this->view->response("Error al insertar el vagón", 400);
+                }
+            } else {
                 $this->view->response("Error al modificar el vagón, la locomotora con id " . $locomotora_id . " no existe", 400);
             }
         } else {
@@ -177,24 +181,23 @@ class APIVagonesController
     }
     public function filterByColumna()
     {
-        if (isset($_GET['capacidad_max'])&& (is_numeric($_GET['capacidad_max']))) {
+        if (isset($_GET['capacidad_max']) && (is_numeric($_GET['capacidad_max']))) {
             $filterColumna = $this->model->filterByColumna($_GET['capacidad_max']);
             return $this->view->response($filterColumna, 200);
         } else {
             return $this->view->response("Parametro no seteado", 400);
         }
     }
- 
+
     public function paginado()
     {
         $cantidad = $this->model->countPaginas();
         if (isset($_GET['pagina']) && (is_numeric(($_GET['pagina'])))) {
             $pagina = $_GET['pagina'];
-            if ($pagina>0 && $pagina <= $cantidad ) {
+            if ($pagina > 0 && $pagina <= $cantidad) {
                 $vagones = $this->model->paginado($pagina);
                 return $this->view->response($vagones, 200);
-            }
-            else {
+            } else {
                 return $this->view->response("No existe la pagina número " . $_GET['pagina'], 404);
             }
         } else {
