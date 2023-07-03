@@ -100,6 +100,7 @@ Si la URI es correcta, es decir, el id existe y el body se completo correctament
 Ordena todos los vagones por una columna seleccionada y en un determinado orden, los valores que pueden tomar son:
 - Parametro columna= "anio_fabricacion", "modelo" o "lugar_fabricacion".
 - Parametro orden= "asc" o "desc".
+
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras/ordenadas?columna=&orden=|
@@ -197,7 +198,6 @@ Por ejemplo:
 Ordena todos los vagones por una columna seleccionada y en un determinado orden, los valores que pueden tomar son:
 - Parametro columna= "nro_vagon", "tipo", "capacidad_max", "modelo", "descripcion" o "locomotora_id".
 - Parametro orden= "asc" o "desc".
-
 
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
