@@ -92,9 +92,18 @@ http://localhost/carpeta/APIREST_TPE/api/locomotora/1
 
 Si la URI es correcta, es decir, el id existe y el body se completo correctamente el código de error será `200 Solicitud exitosa` y se mostrará en pantalla un mensaje que diga que el vagón con el id correspondiente ha sido modificado con exito, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que el vagón con el id solicitado no existe o que faltan parametros para completar la solicitud, esto se deberá corregir para poder realizarla.
 #### Ordenar las locomotoras por columna y orden
+Ordena todos los vagones por una columna seleccionada y en un determinado orden, los valores que pueden tomar son:
+- Parametro columna= "anio_fabricacion", "modelo" o "lugar_fabricacion".
+- Parametro orden= "asc" o "desc".
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras/ordenadas?columna=&orden=|
+
+Por ejemplo:
+
+http://localhost/carpeta/APIREST_TPE/api/locomotoras/ordenadas?columna=modelo&orden=desc
+
+Si la URI es correcta, es decir, se encuentras seteados los parametros "columna" y "orden" con valores correctos el código de error será `200 Solicitud exitosa` y se mostrará en pantalla los vagones ordenados con esas condiciones, por el contrario, si los parametros no estan seteados, es decir, el código de error será `400 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que el vagón con el id solicitado no existe o que faltan parametros para completar la solicitud, esto se deberá corregir para poder realizarla.
 #### Filtrar por año de fabricación mayor a un valor dado
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
@@ -172,8 +181,9 @@ Por ejemplo:
 
 #### Ordenar los vagones por columna y orden
 Ordena todos los vagones por una columna seleccionada y en un determinado orden, los valores que pueden tomar son:
-- Parametro columna= "anio_fabricacion", "modelo" o "lugar_fabricacion".
+- Parametro columna= "nro_vagon", "tipo", "capacidad_max", "modelo", "descripcion" o "locomotora_id".
 - Parametro orden= "asc" o "desc".
+
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `POST`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones|
