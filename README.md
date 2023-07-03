@@ -1,3 +1,31 @@
+## Documentación de API REST TPE
+[TOC]
+###Locomotoras
+####Listar todos las locomotoras
+| VERBO | RECURSO                   | URI|
+| ------------- | ---------------- |--------------|
+| `GET`      | vagones     |http://localhost/carpeta/APIREST_TPE/api/vagones|
+
+####Listar una locomotora por id
+####Eliminar una locomotora por id
+####Modificar una locomotora por id
+####Ingresar una locomotora
+####Ordenar las locomotoras por columna y orden
+####Filtrar por año de fabricación mayor a un valor dado
+####Paginado de locomotoras
+####Resumen
+###Vagones
+####Listar todos los vagones
+####Listar un vagón por id
+####Eliminar un vagón por id
+####Modificar un vagón por id
+####Ingresar un vagón
+####Ordenar los vagones por columna y orden
+####Filtrar por capacidad máxima mayor a un valor dado
+####Paginado de locomotoras
+####Resumen
+
+
 # APIREST_TPE
 URL: http://localhost/carpeta/APIREST_TPE/api/
 "carpeta" es donde se guarda el trabajo.
