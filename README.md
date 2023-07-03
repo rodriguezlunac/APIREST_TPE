@@ -1,6 +1,6 @@
 ## Documentación de API REST TPE
 
-### **Locomotoras**
+### Locomotoras
 #### Listar todos las locomotoras
 Muestra todas las locomotoras con sus respectivos campos.
 | VERBO | RECURSO                   | URI|
@@ -107,13 +107,13 @@ Si la URI es correcta, es decir, el id existe y el body se completo correctament
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `GET`      | vagones     |http://localhost/carpeta/APIREST_TPE/api/locomotoras|
-| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/|
-| `DELETE`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/|
-| `PUT`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/|
+| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/1|
+| `DELETE`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/1|
+| `PUT`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/1|
 | `POST`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras|
-| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras/ordenadas?columna=&orden=|
-| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras/filtro?anio_fabricacion=|
-| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras/paginado?pagina=|
+| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras/ordenadas?columna=modelo&orden=desc|
+| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras/filtro?anio_fabricacion=1950|
+| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras/paginado?pagina=1|
 ### Vagones
 #### Listar todos los vagones
 | VERBO | RECURSO                   | URI|
@@ -195,13 +195,13 @@ Si la URI es correcta, es decir, se encuentras seteados los parametros "columna"
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `GET`      | vagones     |http://localhost/carpeta/APIREST_TPE/api/vagones|
-| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagon/|
-| `DELETE`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagon/|
-| `PUT`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagon/|
+| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagon/1|
+| `DELETE`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagon/1|
+| `PUT`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagon/1|
 | `POST`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones|
-| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones/ordenados?columna=&orden=|
-| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones/filtro?capacidad_max=|
-| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones/paginado?pagina=|
+| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones/ordenados?columna=tipo&orden=asc|
+| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones/filtro?capacidad_max=5000|
+| `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones/paginado?pagina=1|
 # APIREST_TPE
 URL: http://localhost/carpeta/APIREST_TPE/api/
 "carpeta" es donde se guarda el trabajo.
