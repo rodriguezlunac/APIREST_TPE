@@ -7,11 +7,19 @@ Muestra todas las locomotoras con sus respectivos campos.
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `GET`      | vagones     |http://localhost/carpeta/APIREST_TPE/api/locomotoras|
+
+Si la URI es correcta el código de error será `200 Solicitud exitosa`, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se deberá corregir para poder mostrar lo solicitado.
 #### Listar una locomotora por id
 Muestra una locomotora seleccionada por su id con sus respectivos campos.
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotora/|
+
+Por ejemplo:
+
+http://localhost/carpeta/APIREST_TPE/api/locomotora/1
+
+Si la URI es correcta, es decir, el id existe, el código de error será `200 Solicitud exitosa` y se mostrara en pantalla el vagón solicitado, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que el vagón con el id solicitado no existe, se deberá corregir para poder mostrar lo solicitado.
 #### Eliminar una locomotora por id
 Elimina una locomotora seleccionada por su id.
 | VERBO | RECURSO                   | URI|
