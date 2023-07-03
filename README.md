@@ -112,9 +112,17 @@ http://localhost/carpeta/APIREST_TPE/api/locomotoras/ordenadas?columna=modelo&or
 Si la URI es correcta, es decir, se encuentras seteados los parametros "columna" y "orden" con valores correctos el código de error será `200 Solicitud exitosa` y se mostrará en pantalla los vagones ordenados con esas condiciones, por el contrario, si los parametros no estan seteados, es decir, el código de error será `400 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que el vagón con el id solicitado no existe o que faltan parametros para completar la solicitud, esto se deberá corregir para poder realizarla.
 #### ***Filtrar por año de fabricación mayor a un valor dado***
 
+Filtra todos los vagones con año de fabricación mayor a un valor asignado de tipo int:
+
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras/filtro?anio_fabricacion=|
+
+Por ejemplo:
+http://localhost/carpeta/APIREST_TPE/api/locomotoras/filtro?anio_fabricacion=1945
+
+Si la URI es correcta, es decir, se encuentras seteados los parametros "columna" y "orden" con valores correctos el código de error será `200 Solicitud exitosa` y se mostrará en pantalla los vagones ordenados con esas condiciones, por el contrario, si los parametros no estan seteados, es decir, el código de error será `400 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que el vagón con el id solicitado no existe o que faltan parametros para completar la solicitud, esto se deberá corregir para poder realizarla.
+
 #### ***Paginado de locomotoras***
 
 | VERBO | RECURSO                   | URI|
