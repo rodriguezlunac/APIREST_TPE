@@ -34,7 +34,8 @@ Formato para escribir en el body:
 - "modelo" tipo varchar,
 - "anio_fabricacion" tipo int,
 - "lugar_fabricacion" tipo varchar.
-    Por ejemplo
+
+Por ejemplo
 ```javascript
     {
         "modelo": "XPO-789",
@@ -59,7 +60,8 @@ Formato para escribir en el body:
 - "modelo" tipo varchar,
 - "anio_fabricacion" tipo int,
 - "lugar_fabricacion" tipo varchar.
-    Por ejemplo
+
+Por ejemplo
 ```javascript
     {
         "modelo": "XPO-789",
@@ -132,6 +134,7 @@ Formato para escribir en el body:
 - "modelo" tipo varchar,
 - "descripcion" tipo varchar,
 - "locomotora_id" tipo int.
+
 Por ejemplo:
 ```javascript
 
