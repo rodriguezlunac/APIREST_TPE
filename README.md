@@ -198,6 +198,7 @@ Ordena todos los vagones por una columna seleccionada y en un determinado orden,
 - Parametro columna= "nro_vagon", "tipo", "capacidad_max", "modelo", "descripcion" o "locomotora_id".
 - Parametro orden= "asc" o "desc".
 
+
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `POST`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones|
