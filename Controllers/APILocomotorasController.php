@@ -148,9 +148,16 @@ class APILocomotorasController
 
     public function filterByColumna()
     {
-        if (isset($_GET['anio_fabricacion']) && (is_numeric($_GET['anio_fabricacion'])) && $_GET['anio_fabricacion'] > 0 && $_GET['anio_fabricacion'] <= 2023) {
-            $filterByColumna = $this->model->filterByColumna($_GET['anio_fabricacion']);
-            return $this->view->response($filterByColumna, 200);
+        if (isset($_GET['anio_fabricacion']) && (is_numeric($_GET['anio_fabricacion']))) {
+            if( $_GET['anio_fabricacion'] > 0 && $_GET['anio_fabricacion'] <= 2023){
+                $filterByColumna = $this->model->filterByColumna($_GET['anio_fabricacion']);
+                return $this->view->response($filterByColumna, 200);
+            }
+            else{
+            return $this->view->response("Año de fabricación no válido", 400);
+
+            }
+            
         } else {
             return $this->view->response("Parametro no seteado", 400);
         }
@@ -165,7 +172,14 @@ class APILocomotorasController
                 $locomotoras = $this->model->paginado($pagina);
                 return $this->view->response($locomotoras, 200);
             } else {
-                return $this->view->response("No existe la pagina número " . $_GET['pagina'], 404);
+                if($pagina<=0){
+                    return $this->view->response("Número de página no valido", 404);
+
+                }
+                else{
+                    return $this->view->response("No existe la página número " . $pagina, 404);
+
+                }
             }
         } else {
             return $this->view->response("Parametro no seteado", 404);

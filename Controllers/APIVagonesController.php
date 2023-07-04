@@ -174,8 +174,15 @@ class APIVagonesController
     public function filterByColumna()
     {
         if (isset($_GET['capacidad_max']) && (is_numeric($_GET['capacidad_max']))) {
-            $filterColumna = $this->model->filterByColumna($_GET['capacidad_max']);
-            return $this->view->response($filterColumna, 200);
+            if($_GET['capacidad_max']>0){
+
+                $filterColumna = $this->model->filterByColumna($_GET['capacidad_max']);
+                return $this->view->response($filterColumna, 200);
+            }
+            else{
+            return $this->view->response("Capacidad máxima no válida", 400);
+                
+            }
         } else {
             return $this->view->response("Parametro no seteado", 400);
         }
@@ -190,8 +197,13 @@ class APIVagonesController
                 $vagones = $this->model->paginado($pagina);
                 return $this->view->response($vagones, 200);
             } else {
-                return $this->view->response("No existe la pagina número " . $_GET['pagina'], 404);
-            }
+                if($pagina<=0){
+                    return $this->view->response("Número de página no valido", 404);
+
+                }
+                else{
+                return $this->view->response("No existe la pagina número " . $pagina, 404);
+                 } }
         } else {
             return $this->view->response("Parametro no seteado", 404);
         }
