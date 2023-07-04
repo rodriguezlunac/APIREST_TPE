@@ -2,7 +2,7 @@
 ## Documentación de API REST TPE
 
 
-#####Respuestas
+##### Respuestas
 - `200 Solicitud exitosa`:
 - `201 Creado con exito`:
 - `400 El servidor no puede procesar la petición debido a un error del cliente`:
@@ -18,7 +18,7 @@ Muestra todas las locomotoras con sus respectivos campos.
 | ------------- | ---------------- |--------------|
 | `GET`      | locomotoras    |http://localhost/carpeta/APIREST_TPE/api/locomotoras|
 
-#####Respuestas
+##### Respuestas
 
 - `200 Solicitud exitosa`: Si la URI es correcta se listarán todas las locomotoras.
 - `404 El servidor no puede encontrar el recurso solicitado`: si no hay locomotoras para listar.
@@ -33,7 +33,7 @@ Por ejemplo:
 
 http://localhost/carpeta/APIREST_TPE/api/locomotora/1
 
-#####Respuestas
+##### Respuestas
 - `200 Solicitud exitosa`: Si el id existe se mostrará en pantalla la locomotora solicitada.
 - `404 El servidor no puede encontrar el recurso solicitado`: Si el id no existe, se mostrará en pantalla que la locomotora con el id solicitado no existe.
 
@@ -48,7 +48,7 @@ Por ejemplo:
 
 http://localhost/carpeta/APIREST_TPE/api/locomotora/1
 
-#####Respuestas
+##### Respuestas
 - `200 Solicitud exitosa`: Si el id existe se mostrarpa en pantalla un mensaje que diga que la locomotora con el id correspondiente ha sido eliminada con exito
 - `400 El servidor no puede procesar la petición debido a un error del cliente`:
 - `404 El servidor no puede encontrar el recurso solicitado`: Si el id no existe se mostrará en pantalla que la locomotora con el id solicitado no existe.
@@ -88,7 +88,7 @@ http://localhost/carpeta/APIREST_TPE/api/locomotora/1
 ```
 Siendo "anio_fabricacion" un valor positivo y menor o igual a 2023.
 
-#####Respuestas
+##### Respuestas
 
 - `201 Creado con exito`: Si el id existe y el body se completo correctamente se mostrará en pantalla un mensaje que diga que la locomotora con el id correspondiente ha sido modificada con exito.
 - `400 El servidor no puede procesar la petición debido a un error del cliente`:
@@ -128,7 +128,7 @@ Por ejemplo:
 
 Siendo "anio_fabricacion" un valor positivo y menor o igual a 2023.
 
-#####Respuestas
+##### Respuestas
 
 - `201 Creado con exito`: Si el id existe y el body se completo correctamente se mostrará en pantalla un mensaje que diga que la locomotora con el id correspondiente ha sido ingresada con exito.
 - `400 El servidor no puede procesar la petición debido a un error del cliente`:
@@ -150,7 +150,7 @@ Por ejemplo:
 http://localhost/carpeta/APIREST_TPE/api/locomotoras/ordenadas?columna=modelo&orden=desc
 
 
-#####Respuestas
+##### Respuestas
 - `200 Solicitud exitosa`: Si se encuentran seteados los parametros "columna" y "orden" con valores correctos se mostrará en pantalla las locomotoras ordenadas con esas condiciones.
 - `400 El servidor no puede procesar la petición debido a un error del cliente`: Si los parametros no estan seteados se mostrará en pantalla que faltan setear parametros.
 - `404 El servidor no puede encontrar el recurso solicitado`: Si estan mal seteados los parametros "columna" y "orden" se mostrará en pantalla que la columna o el orden es inexistente.
@@ -169,7 +169,7 @@ http://localhost/carpeta/APIREST_TPE/api/locomotoras/filtro?anio_fabricacion=194
 
 Siendo "anio_fabricacion" un valor positivo y menor o igual a 2023.
 
-#####Respuestas
+##### Respuestas
 - `200 Solicitud exitosa`: Si se encuentran seteado el parametro "anio_fabricacion" con valores correctos se mostrará en pantalla las locomotoras que cumplan tal condición.
 - `400 El servidor no puede procesar la petición debido a un error del cliente`: Si los parametros no estan seteados se mostrará en pantalla que faltan setear parametros y si los parametros están seteados con valores incorrectos se mostrará que el año de fabricación no es válido.
 
@@ -187,7 +187,7 @@ http://localhost/carpeta/APIREST_TPE/api/locomotoras/paginado?pagina=1
 
 Siendo "pagina" un valor entero mayor a cero.
 
-#####Respuestas
+##### Respuestas
 - `200 Solicitud exitosa`: Si se encuentra seteado el parametro "pagina" con valores correctos se mostrará en pantalla hasta 10 locomotoras correspondientes a dicha página.
 - `400 El servidor no puede procesar la petición debido a un error del cliente`: Si los parametros no estan seteados o el valor no es válido se mostrará en pantalla que los parametros no estan seteados o que la página seleccionada no es válida.
 - `404 El servidor no puede encontrar el recurso solicitado`: Si el parametro esta seteado y no es un valor válido se mostrará en pantalla que no existe el número de página seleccionado.
