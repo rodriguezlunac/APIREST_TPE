@@ -1,4 +1,9 @@
+[TOC]
+
 ## Documentación de API REST TPE
+
+La API REST del TPE recibe consultas tipo HTTP GET, PUT, DELETE y POST con la sintaxis descrita debajo, donde se especifican las URI, sus parámetros y opciones para los mismos. 
+El servidor responde en formato JSON o en formato texto con un mensaje descriptivo de la acción resultado de la consulta realizada.
 
 ### Locomotoras
 #### ***Listar todos las locomotoras***
