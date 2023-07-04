@@ -13,7 +13,7 @@ Muestra todas las locomotoras con sus respectivos campos.
 | ------------- | ---------------- |--------------|
 | `GET`      | locomotoras    |http://localhost/carpeta/APIREST_TPE/api/locomotoras|
 
-Si la URI es correcta el código de error será `200 Solicitud exitosa`, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se deberá corregir para poder mostrar lo solicitado.
+Si la URI es correcta el código de error será `200 Solicitud exitosa` y listará todas las locomotoras, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado`, se deberá corregir para poder mostrar lo solicitado.
 #### Listar una locomotora por id
 Muestra una locomotora seleccionada por su id con sus respectivos campos.
 | VERBO | RECURSO                   | URI|
@@ -175,7 +175,7 @@ Muestra todos los vagones con sus respectivos campos.
 | ------------- | ---------------- |--------------|
 | `GET`      | vagones     |http://localhost/carpeta/APIREST_TPE/api/vagones|
 
-Si la URI es correcta el código de error será `200 Solicitud exitosa`, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se deberá corregir para poder mostrar lo solicitado.
+Si la URI es correcta el código de error será `200 Solicitud exitosa` y listará todas las locomotoras, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado`, se deberá corregir para poder mostrar lo solicitado.
 #### ***Listar un vagón por id***
 
 Muestra un vagón seleccionado por su id con sus respectivos campos.
