@@ -410,4 +410,3 @@ http://localhost/carpeta/APIREST_TPE/api/vagones/paginado?pagina=1
 | `GET`      | vagones    |http://localhost/carpeta/APIREST_TPE/api/vagones/ordenados?columna=tipo&orden=asc|
 | `GET`      | vagones    |http://localhost/carpeta/APIREST_TPE/api/vagones/filtro?capacidad_max=5000|
 | `GET`      | vagones    |http://localhost/carpeta/APIREST_TPE/api/vagones/paginado?pagina=1|
-
