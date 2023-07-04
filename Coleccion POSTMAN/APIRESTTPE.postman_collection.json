@@ -1,0 +1,454 @@
+{
+	"info": {
+		"_postman_id": "4dbb6e13-927c-42e6-bfb3-f6c4160ff82f",
+		"name": "API REST TPE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24236208"
+	},
+	"item": [
+		{
+			"name": "Locomotoras",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/APIREST_TPE/APIREST_TPE/api/locomotoras",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"APIREST_TPE",
+						"APIREST_TPE",
+						"api",
+						"locomotoras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Locomotora por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/APIREST_TPE/APIREST_TPE/api/locomotora/48",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"APIREST_TPE",
+						"APIREST_TPE",
+						"api",
+						"locomotora",
+						"48"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ordenar locomotoras por columna y orden",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "   {\r\n\r\n        \"modelo\": \"HOY NUEVO\",\r\n        \"anio_fabricacion\": 1938,\r\n        \"lugar_fabricacion\": \"Estados Unidos\"\r\n    }"
+				},
+				"url": {
+					"raw": "http://localhost/APIREST_TPE/APIREST_TPE/api/locomotoras/ordenadas?columna=lugar_fabricacion&orden=asc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"APIREST_TPE",
+						"APIREST_TPE",
+						"api",
+						"locomotoras",
+						"ordenadas"
+					],
+					"query": [
+						{
+							"key": "columna",
+							"value": "lugar_fabricacion"
+						},
+						{
+							"key": "orden",
+							"value": "asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filtrar locomotoras por año de fabricación",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "   {\r\n\r\n        \"modelo\": \"HOY NUEVO\",\r\n        \"anio_fabricacion\": 1938,\r\n        \"lugar_fabricacion\": \"Estados Unidos\"\r\n    }"
+				},
+				"url": {
+					"raw": "http://localhost/APIREST_TPE/APIREST_TPE/api/locomotoras/filtro?anio_fabricacion=1939",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"APIREST_TPE",
+						"APIREST_TPE",
+						"api",
+						"locomotoras",
+						"filtro"
+					],
+					"query": [
+						{
+							"key": "anio_fabricacion",
+							"value": "1939"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paginado de locomotoras por página",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/APIREST_TPE/APIREST_TPE/api/locomotoras/paginado?pagina=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"APIREST_TPE",
+						"APIREST_TPE",
+						"api",
+						"locomotoras",
+						"paginado"
+					],
+					"query": [
+						{
+							"key": "pagina",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar locomotora por id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"modelo\": \"\",\r\n        \"anio_fabricacion\": ,\r\n        \"lugar_fabricacion\": \"\"\r\n }"
+				},
+				"url": {
+					"raw": "http://localhost/APIREST_TPE/APIREST_TPE/api/locomotora/48",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"APIREST_TPE",
+						"APIREST_TPE",
+						"api",
+						"locomotora",
+						"48"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar locomotora por id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "   {\r\n\r\n        \"modelo\": \"HOY NUEVO\",\r\n        \"anio_fabricacion\": 1938,\r\n        \"lugar_fabricacion\": \"Estados Unidos\"\r\n    }"
+				},
+				"url": {
+					"raw": "http://localhost/APIREST_TPE/APIREST_TPE/api/locomotora/24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"APIREST_TPE",
+						"APIREST_TPE",
+						"api",
+						"locomotora",
+						"24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insertar locomotora",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"modelo\": \"\",\r\n        \"anio_fabricacion\": ,\r\n        \"lugar_fabricacion\": \"\"\r\n }"
+				},
+				"url": {
+					"raw": "http://localhost/APIREST_TPE/APIREST_TPE/api/locomotoras",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"APIREST_TPE",
+						"APIREST_TPE",
+						"api",
+						"locomotoras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vagones",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/APIREST_TPE/APIREST_TPE/api/vagones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"APIREST_TPE",
+						"APIREST_TPE",
+						"api",
+						"vagones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vagón por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/APIREST_TPE/APIREST_TPE/api/vagon/24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"APIREST_TPE",
+						"APIREST_TPE",
+						"api",
+						"vagon",
+						"24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ordenar vagones por columna y orden",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "   {\r\n\r\n        \"modelo\": \"HOY NUEVO\",\r\n        \"anio_fabricacion\": 1938,\r\n        \"lugar_fabricacion\": \"Estados Unidos\"\r\n    }"
+				},
+				"url": {
+					"raw": "http://localhost/APIREST_TPE/APIREST_TPE/api/vagones/ordenados?columna=capacidad_max&orden=asc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"APIREST_TPE",
+						"APIREST_TPE",
+						"api",
+						"vagones",
+						"ordenados"
+					],
+					"query": [
+						{
+							"key": "columna",
+							"value": "capacidad_max"
+						},
+						{
+							"key": "orden",
+							"value": "asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filtrar vagones por capacidad máxima",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "   {\r\n\r\n        \"modelo\": \"HOY NUEVO\",\r\n        \"anio_fabricacion\": 1938,\r\n        \"lugar_fabricacion\": \"Estados Unidos\"\r\n    }"
+				},
+				"url": {
+					"raw": "http://localhost/APIREST_TPE/APIREST_TPE/api/vagones/filtro?capacidad_max=9000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"APIREST_TPE",
+						"APIREST_TPE",
+						"api",
+						"vagones",
+						"filtro"
+					],
+					"query": [
+						{
+							"key": "capacidad_max",
+							"value": "9000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paginado de vagones por página",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/APIREST_TPE/APIREST_TPE/api/vagones/paginado?pagina=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"APIREST_TPE",
+						"APIREST_TPE",
+						"api",
+						"vagones",
+						"paginado"
+					],
+					"query": [
+						{
+							"key": "pagina",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar vagón por id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n        \"nro_vagon\": ,\r\n        \"tipo\": \"\",\r\n        \"capacidad_max\": ,\r\n        \"modelo\": \"\",\r\n        \"descripcion\": \"\",\r\n        \"locomotora_id\": \r\n        }"
+				},
+				"url": {
+					"raw": "http://localhost/APIREST_TPE/APIREST_TPE/api/vagon/24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"APIREST_TPE",
+						"APIREST_TPE",
+						"api",
+						"vagon",
+						"24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar vagón por id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "   {\r\n\r\n        \"modelo\": \"HOY NUEVO\",\r\n        \"anio_fabricacion\": 1938,\r\n        \"lugar_fabricacion\": \"Estados Unidos\"\r\n    }"
+				},
+				"url": {
+					"raw": "http://localhost/APIREST_TPE/APIREST_TPE/api/vagon/24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"APIREST_TPE",
+						"APIREST_TPE",
+						"api",
+						"vagon",
+						"24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insertar vagon",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n        \"nro_vagon\": ,\r\n        \"tipo\": \"\",\r\n        \"capacidad_max\": ,\r\n        \"modelo\": \"\",\r\n        \"descripcion\": \"\",\r\n        \"locomotora_id\": \r\n        }"
+				},
+				"url": {
+					"raw": "http://localhost/APIREST_TPE/APIREST_TPE/api/vagones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"APIREST_TPE",
+						"APIREST_TPE",
+						"api",
+						"vagones"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

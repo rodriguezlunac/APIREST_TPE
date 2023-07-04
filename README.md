@@ -2,6 +2,8 @@
 
 La API REST del TPE recibe consultas tipo HTTP GET, PUT, DELETE y POST con la sintaxis descrita debajo, donde se especifican las URI, sus parámetros y opciones para los mismos. 
 El servidor responde en formato JSON o en formato texto con un mensaje descriptivo de la acción resultado de la consulta realizada.
+Para que funcione correctamente la colección de POSTMAN es necesario que la 'carpeta' se llame 'APIREST_TPE' y una vez dentro clonar el repositorio remoto:
+https://github.com/rodriguezlunac/APIREST_TPE 
 
 ### Locomotoras
 #### ***Listar todos las locomotoras***
