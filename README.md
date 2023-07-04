@@ -44,11 +44,11 @@ Para modificar una locomotora debemos completar el body de la siguiente manera, 
 
 Formato para escribir en el body:
 ```javascript
- {
-        "modelo": "",
-        "anio_fabricacion": ,
-        "lugar_fabricacion": ""
-    }
+{
+    "modelo": "",
+    "anio_fabricacion": ,
+    "lugar_fabricacion": ""
+}
 ```
 - "modelo" tipo varchar,
 - "anio_fabricacion" tipo int,
@@ -59,10 +59,10 @@ Por ejemplo:
 http://localhost/carpeta/APIREST_TPE/api/locomotora/1
 
 ```javascript
-    {
-        "modelo": "XPO-789",
-        "anio_fabricacion": 1920,
-        "lugar_fabricacion": "Argentina"
+{
+    "modelo": "XPO-789",
+    "anio_fabricacion": 1920,
+    "lugar_fabricacion": "Argentina"
     }
 ```
 Siendo "anio_fabricacion" un valor positivo y menor o igual a 2023.
@@ -80,11 +80,11 @@ Para ingresar un vagon debemos completar el body de la siguiente manera, complet
 
 Formato para escribir en el body:
 ```javascript
- {
-        "modelo": "",
-        "anio_fabricacion": ,
-        "lugar_fabricacion": ""
-    }
+{
+    "modelo": "",
+    "anio_fabricacion": ,
+    "lugar_fabricacion": ""
+}
 ```
 - "modelo" tipo varchar,
 - "anio_fabricacion" tipo int,
@@ -93,11 +93,11 @@ Formato para escribir en el body:
 Por ejemplo:
 
 ```javascript
-    {
-        "modelo": "XPO-789",
-        "anio_fabricacion": 1920,
-        "lugar_fabricacion": "Argentina"
-    }
+{
+    "modelo": "XPO-789",
+    "anio_fabricacion": 1920,
+    "lugar_fabricacion": "Argentina"
+}
 ```
 
 Siendo "anio_fabricacion" un valor positivo y menor o igual a 2023.
@@ -208,13 +208,13 @@ Formato para escribir en el body:
 ```javascript
 
  {
-        "nro_vagon": ,
-        "tipo": "",
-        "capacidad_max": ,
-        "modelo": "",
-        "descripcion": "",
-        "locomotora_id": 
-    }
+    "nro_vagon": ,
+    "tipo": "",
+    "capacidad_max": ,
+    "modelo": "",
+    "descripcion": "",
+    "locomotora_id": 
+}
 
 ```
 - "nro_vagon" tipo int, 
@@ -230,14 +230,14 @@ http://localhost/carpeta/APIREST_TPE/api/vagon/1
 
 ```javascript
 
-  {
-        "nro_vagon": 123,
-        "tipo": "Comercial",
-        "capacidad_max": 5000,
-        "modelo": "LB-789",
-        "descripcion": "Vagon comercial",
-        "locomotora_id": 48
-    }
+{
+    "nro_vagon": 123,
+    "tipo": "Comercial",
+    "capacidad_max": 5000,
+    "modelo": "LB-789",
+    "descripcion": "Vagon comercial",
+    "locomotora_id": 48
+}
 ```
 Siendo "capacidad_max" un valor positivo.
 
@@ -256,14 +256,14 @@ Para ingresarr un vagón debemos completar el body de la siguiente manera, compl
 Formato para escribir en el body:
 ```javascript
 
- {
-        "nro_vagon": ,
-        "tipo": "",
-        "capacidad_max": ,
-        "modelo": "",
-        "descripcion": "",
-        "locomotora_id": 
-    }
+{
+    "nro_vagon": ,
+    "tipo": "",
+    "capacidad_max": ,
+    "modelo": "",
+    "descripcion": "",
+    "locomotora_id": 
+}
 
 ```
 - "nro_vagon" tipo int, 
@@ -276,14 +276,14 @@ Formato para escribir en el body:
 Por ejemplo:
 ```javascript
 
-  {
-        "nro_vagon": 123,
-        "tipo": "Comercial",
-        "capacidad_max": 5000,
-        "modelo": "LB-789",
-        "descripcion": "Vagon comercial",
-        "locomotora_id": 48
-    }
+{
+    "nro_vagon": 123,
+    "tipo": "Comercial",
+    "capacidad_max": 5000,
+    "modelo": "LB-789",
+    "descripcion": "Vagon comercial",
+    "locomotora_id": 48
+}
 ```
 Siendo "capacidad_max" un valor positivo.
 
@@ -343,151 +343,3 @@ Si la URI es correcta, es decir, se encuentras seteado el parametro "pagina" con
 | `GET`      | vagones    |http://localhost/carpeta/APIREST_TPE/api/vagones/filtro?capacidad_max=5000|
 | `GET`      | vagones    |http://localhost/carpeta/APIREST_TPE/api/vagones/paginado?pagina=1|
 
-# APIREST_TPE
-URL: http://localhost/carpeta/APIREST_TPE/api/
-"carpeta" es donde se guarda el trabajo.
-
-Vagones
-1. MÉTODO GET. Para mostrar todos los vagones: 
-    URL/vagones
-    Por ejemplo: http://localhost/carpeta/APIREST_TPE/api/vagones
-
-2. MÉTODO GET. Para mostrar un vagon según el :ID:
-    URL/vagon/:ID
-    Por ejemplo: http://localhost/carpeta/APIREST_TPE/api/vagon/1
-
-3. MÉTODO DELETE. Para eliminar un vagon según el :ID:
-    URL/vagon/:ID
-    Por ejemplo: http://localhost/carpeta/APIREST_TPE/api/vagon/1
-
-4. MÉTODO POST. Para insertar un vagon, no puede quedar nigun campo vacío:
-    URL/vagones
-    Body {
-        "nro_vagon": ?,
-        "tipo": "?",
-        "capacidad_max": ?,
-        "modelo": "?",
-        "descripcion": "?",
-        "locomotora_id": ?
-    }
-"nro_vagon" tipo int, 
-"tipo" tipo varchar,
-"capacidad_max" tipo int,
-"modelo" tipo varchar,
-"descripcion" tipo varchar,
-"locomotora_id" tipo int.
-    Por ejemplo: http://localhost/carpeta/APIREST_TPE/api/vagones
-    {
-        "nro_vagon": 123,
-        "tipo": "Comercial",
-        "capacidad_max": 5000,
-        "modelo": "LB-789",
-        "descripcion": "Vagon comercial",
-        "locomotora_id": 48
-    }
-
-5. MÉTODO PUT. Para modificar un vagon según el :ID, , no puede quedar nigun campo vacío:
-    URL/vagon/:ID
-    Body {
-        "nro_vagon": ?,
-        "tipo": "?",
-        "capacidad_max": ?,
-        "modelo": "?",
-        "descripcion": "?",
-        "locomotora_id": ?
-    }
-"nro_vagon" tipo int, 
-"tipo" tipo varchar,
-"capacidad_max" tipo int,
-"modelo" tipo varchar,
-"descripcion" tipo varchar,
-"locomotora_id" tipo int.
-    Por ejemplo: http://localhost/carpeta/APIREST_TPE/api/vagon/1
-    
-    {
-        "nro_vagon": 123,
-        "tipo": "Comercial",
-        "capacidad_max": 5000,
-        "modelo": "LB-789",
-        "descripcion": "Vagon comercial",
-        "locomotora_id": 48
-    }
-
-6. MÉTODO GET. Para ordenar vagones según la columna que elijas, asc o desc:
-    URL/vagones/ordenados?columna=&orden=
-    El parámetro "columna" puede tomar los valores "nro_vagon", "tipo", "capacidad_max", "modelo", "descripcion" o "locomotora_id".
-    El parámetro "orden" puede tomar los valores "asc" o "desc".
-    Por ejemplo: http://localhost/carpeta/APIREST_TPE/api/vagones/ordenados?columna=modelo&orden=asc
-
-7. MÉTODO GET. Para filtrar vagones según su capacidad maxima: 
-    URL/vagones/filtro?capacidad_max=
-    Devuelve los vagones con capacidad mayor al valor indicado.
-    Por ejemplo: http://localhost/carpeta/APIREST_TPE/api/vagones/filtro?capacidad_max=20000
-
-8. MÉTODO GET. Para paginar los vagones:
-    URL/vagones/paginado?pagina=
-    El parámetro "pagina=" puede tomar números enteros, si la página no existe se va a indicar como un error.
-    http://localhost/carpeta/APIREST_TPE/api/vagones/paginado?pagina=1
-
-Locomotoras
-1. MÉTODO GET. Para mostrar todas las locomotoras: 
-    URL/locomotoras
-    Por ejemplo: http://localhost/carpeta/APIREST_TPE/api/locomotoras
-
-2. MÉTODO GET. Para mostrar una locomotora según el :ID:
-    URL/locomotora/:ID
-    Por ejemplo: http://localhost/carpeta/APIREST_TPE/api/locomotora/1
-
-3. MÉTODO DELETE. Para eliminar una locomotora según el :ID:
-    URL/locomotora/:ID
-    Por ejemplo: http://localhost/carpeta/APIREST_TPE/api/locomotora/1
-
-4. MÉTODO POST. Para insertar una locomotora, no puede quedar nigun campo vacío:
-    URL/locomotoras
-    Body {
-        "modelo": "?",
-        "anio_fabricacion": ?,
-        "lugar_fabricacion": "?"
-    }
-"modelo" tipo varchar,
-"anio_fabricacion" tipo int,
-"lugar_fabricacion" tipo varchar.
-    Por ejemplo: http://localhost/carpeta/APIREST_TPE/api/locomotoras
-    {
-        "modelo": "XPO-789",
-        "anio_fabricacion": 1920,
-        "lugar_fabricacion": "Argentina"
-    }
-
-5. MÉTODO PUT. Para modificar un locomotora según el :ID, no puede quedar nigun campo vacío:
-    URL/locomotora/:ID
-    Body {
-        "modelo": "?",
-        "anio_fabricacion": ?,
-        "lugar_fabricacion": "?"
-    }
-"modelo" tipo varchar,
-"anio_fabricacion" tipo int,
-"lugar_fabricacion" tipo varchar.
-    Por ejemplo: http://localhost/carpeta/APIREST_TPE/api/locomotora/1
-    {
-        "modelo": "XPO-789",
-        "anio_fabricacion": 1920,
-        "lugar_fabricacion": "Argentina"
-    }
-
-6. MÉTODO GET. Para ordenar locomotoras según la columna que elijas, asc o desc:
-    URL/locomotoras/ordenadas?columna=&orden=
-    El parámetro "columna" puede tomar los valores "anio_fabricacion", "modelo" o "lugar_fabricacion".
-    El parámetro "orden" puede tomar los valores "asc" o "desc".
-    Por ejemplo: http://localhost/carpeta/APIREST_TPE/api/locomotoras/ordenadas?columna=anio_fabricacion&orden=desc
-
-7. MÉTODO GET. Para filtrar locomotoras según el año de fabricación: 
-    URL/locomotoras/filtro?anio_fabricacion=
-    Devuelve las locomotoras con año de fabricación mayor al valor indicado.
-    Por ejemplo: http://localhost/carpeta/APIREST_TPE/api/locomotoras/filtro?anio_fabricacion=2000
-
-8. MÉTODO GET. Para paginar las locomotoras:
-    URL/locomotoras/paginado?pagina=
-    El parámetro "pagina" puede tomar números enteros, si la página no existe se va a indicar como un error.
-    Por ejemplo: http://localhost/carpeta/APIREST_TPE/api/locomotoras/paginado?pagina=1
