@@ -30,14 +30,21 @@ class APILocomotorasController
                 return $this->view->response("No hay locomotoras", 404);
             }
         } else {
-            $locomotora = $this->model->getLocomotora($params[":ID"]);
-            if (!empty($locomotora)) {
-                return $this->view->response($locomotora, 200);
+            if (is_numeric($params[':ID']) && $params[":ID"]>0) {
+                $locomotora = $this->model->getLocomotora($params[":ID"]);
+
+                if (!empty($locomotora)) {
+                    return $this->view->response($locomotora, 200);
+                } else {
+                    return $this->view->response("No se ha encontrado una locomotora con id: " . $params[":ID"], 404);
+                }
             } else {
-                return $this->view->response("No se ha encontrado una locomotora con id: " . $params[":ID"], 404);
+                $this->view->response("Se espera un valor numérido para el id y mayor a 0", 400);
+
             }
         }
     }
+
 
     public function insertLocomotora()
     {
@@ -54,7 +61,7 @@ class APILocomotorasController
         $modelo = $body->modelo;
         $anio_fabricacion = $body->anio_fabricacion;
         $lugar_fabricacion = $body->lugar_fabricacion;
-        if (!is_null($modelo) && !is_null($anio_fabricacion) && !is_null($lugar_fabricacion) && is_numeric($anio_fabricacion) && $anio_fabricacion > 0 && $anio_fabricacion <= 2023) {
+        if (!is_null($modelo) && !is_null($anio_fabricacion) && !is_null($lugar_fabricacion) && is_numeric($anio_fabricacion) && $anio_fabricacion > 1000 && $anio_fabricacion <= 2023) {
             $locomotora = $this->model->insertLocomotora($modelo, $anio_fabricacion, $lugar_fabricacion);
             $locomotoraNueva = $this->model->getLocomotora($locomotora);
             if ($locomotoraNueva) {
@@ -70,6 +77,8 @@ class APILocomotorasController
     public function updateLocomotora($params = [])
     {
         $id_locomotora = $params[":ID"];
+        if(is_numeric($params[":ID"])  && $params[":ID"]>0){
+
         $locomotora = $this->model->getLocomotora($id_locomotora);
         if ($locomotora) {
             $body = $this->getData();
@@ -85,27 +94,38 @@ class APILocomotorasController
             $modelo = $body->modelo;
             $anio_fabricacion = $body->anio_fabricacion;
             $lugar_fabricacion = $body->lugar_fabricacion;
-            if (!is_null($modelo) && !is_null($anio_fabricacion) && !is_null($lugar_fabricacion) && is_numeric($anio_fabricacion) && $anio_fabricacion > 0 && $anio_fabricacion <= 2023) {
+            if (!is_null($modelo) && !is_null($anio_fabricacion) && !is_null($lugar_fabricacion) && is_numeric($anio_fabricacion) && $anio_fabricacion > 1000 && $anio_fabricacion <= 2023) {
                 $this->model->updateLocomotora($id_locomotora, $modelo, $anio_fabricacion, $lugar_fabricacion);
                 $this->view->response("Locomotora con id: " . $id_locomotora . " fue modificada con exito", 201);
-            }
-            else{
+            } else {
                 $this->view->response("Error al insertar locomotora", 400);
             }
         } else {
             $this->view->response("Locomotora con id: " . $id_locomotora . " no fue encontrada", 404);
         }
     }
+    else{
+        $this->view->response("Se espera un valor numérido para el id y mayor a 0", 400);
+
+    }
+    }
 
     public function deleteLocomotora($params = [])
     {
         $id_locomotora = $params[":ID"];
-        $locomotora = $this->model->getLocomotora($id_locomotora);
-        if ($locomotora) {
-            $this->model->deleteLocomotora($id_locomotora);
-            $this->view->response("Locomotora con id: " . $id_locomotora . " fue eliminada con exito", 200);
-        } else {
-            $this->view->response("Locomotora con id: " . $id_locomotora . " no fue encontrada", 404);
+        if(is_numeric($params[":ID"])  && $params[":ID"]>0){
+
+            $locomotora = $this->model->getLocomotora($id_locomotora);
+            if ($locomotora) {
+                $this->model->deleteLocomotora($id_locomotora);
+                $this->view->response("Locomotora con id: " . $id_locomotora . " fue eliminada con exito", 200);
+            } else {
+                $this->view->response("Locomotora con id: " . $id_locomotora . " no fue encontrada", 404);
+            }
+        }
+        else{
+            $this->view->response("Se espera un valor numérido para el id o mayor a 0", 400);
+
         }
     }
 
@@ -149,15 +169,12 @@ class APILocomotorasController
     public function filterByColumna()
     {
         if (isset($_GET['anio_fabricacion']) && (is_numeric($_GET['anio_fabricacion']))) {
-            if( $_GET['anio_fabricacion'] > 0 && $_GET['anio_fabricacion'] <= 2023){
+            if ($_GET['anio_fabricacion'] > 1000 && $_GET['anio_fabricacion'] <= 2023) {
                 $filterByColumna = $this->model->filterByColumna($_GET['anio_fabricacion']);
                 return $this->view->response($filterByColumna, 200);
+            } else {
+                return $this->view->response("Año de fabricación no válido", 404);
             }
-            else{
-            return $this->view->response("Año de fabricación no válido", 404);
-
-            }
-            
         } else {
             return $this->view->response("Parametro no seteado", 400);
         }
@@ -172,17 +189,14 @@ class APILocomotorasController
                 $locomotoras = $this->model->paginado($pagina);
                 return $this->view->response($locomotoras, 200);
             } else {
-                if($pagina<=0){
+                if ($pagina <= 0) {
                     return $this->view->response("Número de página no valido", 400);
-
-                }
-                else{
+                } else {
                     return $this->view->response("No existe la página número " . $pagina, 404);
-
                 }
             }
         } else {
-            return $this->view->response("Parametro no seteado", 400);
+            return $this->view->response("Parametro no seteado o se espera un valor numérico", 400);
         }
     }
 }

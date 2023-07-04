@@ -30,6 +30,7 @@ http://localhost/carpeta/APIREST_TPE/api/locomotora/1
 
 ##### Respuestas
 - `200 Solicitud exitosa`: Si el id existe se mostrará en pantalla la locomotora solicitada.
+- `400 El servidor no puede procesar la petición debido a un error del cliente`: Si el id no es un valor válido  se mostrará en pantalla que se esperaba un valor númerico mayor a cero.
 - `404 El servidor no puede encontrar el recurso solicitado`: Si el id no existe, se mostrará en pantalla que la locomotora con el id solicitado no existe.
 
 #### ***Eliminar una locomotora por id***
@@ -44,7 +45,8 @@ Por ejemplo:
 http://localhost/carpeta/APIREST_TPE/api/locomotora/1
 
 ##### Respuestas
-- `200 Solicitud exitosa`: Si el id existe se mostrará en pantalla un mensaje que diga que la locomotora con el id correspondiente ha sido eliminada con exito
+- `200 Solicitud exitosa`: Si el id existe se mostrará en pantalla un mensaje que diga que la locomotora con el id correspondiente ha sido eliminada con exito.
+- `400 El servidor no puede procesar la petición debido a un error del cliente`: Si el id no es un valor válido  se mostrará en pantalla que se esperaba un valor númerico mayor a cero.
 - `404 El servidor no puede encontrar el recurso solicitado`: Si el id no existe se mostrará en pantalla que la locomotora con el id solicitado no existe.
 
 #### ***Modificar una locomotora por id***
@@ -80,12 +82,12 @@ http://localhost/carpeta/APIREST_TPE/api/locomotora/1
     "lugar_fabricacion": "Argentina"
     }
 ```
-Siendo "anio_fabricacion" un valor positivo y menor o igual a 2023.
+Siendo "anio_fabricacion" un valor positivo mayor a 1000 y menor o igual a 2023.
 
 ##### Respuestas
 
 - `201 Creado con exito`: Si el id existe y el body se completo correctamente se mostrará en pantalla un mensaje que diga que la locomotora con el id correspondiente ha sido modificada con exito.
-- `400 El servidor no puede procesar la petición debido a un error del cliente`: Si el body se completo erroneamente se mostrará en pantalla el mensaje error al modificar la locomotora.
+- `400 El servidor no puede procesar la petición debido a un error del cliente`: Si el body se completo erroneamente se mostrará en pantalla el mensaje error al modificar la locomotora y si el id no es un valor válido se mostrará en pantalla que se esperaba un valor númerico mayor a cero.
 - `404 El servidor no puede encontrar el recurso solicitado`: Si el id no existe se mostrará en pantalla que el id de la locomotora solicitada no existe.
 #### ***Ingresar una locomotora***
 
@@ -119,7 +121,7 @@ Por ejemplo:
 }
 ```
 
-Siendo "anio_fabricacion" un valor positivo y menor o igual a 2023.
+Siendo "anio_fabricacion" un valor positivo mayor a 1000 y menor o igual a 2023.
 
 ##### Respuestas
 
@@ -223,6 +225,7 @@ http://localhost/carpeta/APIREST_TPE/api/vagon/1
 
 ##### Respuestas
 - `200 Solicitud exitosa`: Si el id existe se mostrará en pantalla el vagón solicitado.
+- `400 El servidor no puede procesar la petición debido a un error del cliente`: Si el id no es un valor válido  se mostrará en pantalla que se esperaba un valor númerico mayor a cero.
 - `404 El servidor no puede encontrar el recurso solicitado`: Si el id no existe, se mostrará en pantalla que el vagón con el id solicitado no existe.
 
 
@@ -247,7 +250,7 @@ Modifica un vagón por su id.
 
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
-| `DELETE`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagon/|
+| `PUT`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagon/|
 
 Para modificar un vagón debemos completar el body de la siguiente manera, completanto todos los campos respetando su tipo:
 
@@ -291,7 +294,7 @@ Siendo "capacidad_max" un valor positivo.
 ##### Respuestas
 
 - `201 Creado con exito`: Si el id existe y el body se completo correctamente se mostrará en pantalla un mensaje que diga que el vagón con el id correspondiente ha sido modificado con exito.
-- `400 El servidor no puede procesar la petición debido a un error del cliente`: Si el body se completo erroneamente se mostrará en pantalla el mensaje error al modificar el vagón.
+- `400 El servidor no puede procesar la petición debido a un error del cliente`: Si el body se completo erroneamente se mostrará en pantalla el mensaje error al modificar el vagón y si el id no es un valor válido se mostrará en pantalla que se esperaba un valor númerico mayor a cero.
 - `404 El servidor no puede encontrar el recurso solicitado`: Si el id del vagón o la locomotora no existe se mostrará en pantalla que el id del vagón o locomotora no existe.
 
 
@@ -383,7 +386,7 @@ Siendo "capacidad_max" un valor positivo.
 - `400 El servidor no puede procesar la petición debido a un error del cliente`: Si los parametros no estan seteados se mostrará en pantalla que faltan setear parametros.
 -  `404 El servidor no puede encontrar el recurso solicitado`: Si los parametros están seteados con valores incorrectos se mostrará que la capacidad máxima no es válido.
 
-#### ***Paginado de locomotoras***
+#### ***Paginado de vagones***
 
 Lista 10 vagones por página
 | VERBO | RECURSO                   | URI|

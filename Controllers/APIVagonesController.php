@@ -33,11 +33,16 @@ class APIVagonesController
                 return $this->view->response("No hay vagones", 404);
             }
         } else {
-            $vagon = $this->model->getVagon($params[":ID"]);
-            if (!empty($vagon)) {
-                return $this->view->response($vagon, 200);
+            if (is_numeric($params[':ID'])&& $params[':ID']>0) {
+                $vagon = $this->model->getVagon($params[":ID"]);
+                if (!empty($vagon)) {
+                    return $this->view->response($vagon, 200);
+                } else {
+                    return $this->view->response("No se ha encontrado un vagon con id: " . $params[":ID"], 404);
+                }
             } else {
-                return $this->view->response("No se ha encontrado un vagon con id: " . $params[":ID"], 404);
+                $this->view->response("Se espera un valor numérido para el id y mayor a 0", 400);
+
             }
         }
     }
@@ -81,6 +86,8 @@ class APIVagonesController
     public function updateVagon($params = [])
     {
         $id_vagon = $params[":ID"];
+        if(is_numeric($params[":ID"])  && $params[":ID"]>0){
+
         $vagon = $this->model->getVagon($id_vagon);
         if ($vagon) {
             $body = $this->getData();
@@ -114,18 +121,30 @@ class APIVagonesController
             $this->view->response("Vagón con id: " . $id_vagon . " no fue encontrado", 404);
         }
     }
+    else{
+        $this->view->response("Se espera un valor numérido para el id y mayor a 0", 400);
+
+    }
+    }
 
     public function deleteVagon($params = [])
     {
         $id_vagon = $params[":ID"];
-        $vagon = $this->model->getVagon($id_vagon);
-        if ($vagon) {
-            $this->model->deleteVagon($id_vagon);
-            $this->view->response("Vagón con id: " . $id_vagon . " fue eliminado con exito", 200);
+        if (is_numeric($params[":ID"]) && $params[":ID"]>0 ) {
+
+            $vagon = $this->model->getVagon($id_vagon);
+            if ($vagon) {
+                $this->model->deleteVagon($id_vagon);
+                $this->view->response("Vagón con id: " . $id_vagon . " fue eliminado con exito", 200);
+            } else {
+                $this->view->response("Vagón con id: " . $id_vagon . " no fue encontrado", 404);
+            }
         } else {
-            $this->view->response("Vagón con id: " . $id_vagon . " no fue encontrado", 404);
+            $this->view->response("Se espera un valor numérido para el id o mayor a 0", 400);
         }
     }
+
+
     public function orderByColumna()
     {
         if (isset($_GET['columna']) && isset($_GET['orden'])) {
@@ -174,14 +193,12 @@ class APIVagonesController
     public function filterByColumna()
     {
         if (isset($_GET['capacidad_max']) && (is_numeric($_GET['capacidad_max']))) {
-            if($_GET['capacidad_max']>0){
+            if ($_GET['capacidad_max'] > 0) {
 
                 $filterColumna = $this->model->filterByColumna($_GET['capacidad_max']);
                 return $this->view->response($filterColumna, 200);
-            }
-            else{
-            return $this->view->response("Capacidad máxima no válida", 404);
-                
+            } else {
+                return $this->view->response("Capacidad máxima no válida", 404);
             }
         } else {
             return $this->view->response("Parametro no seteado", 400);
@@ -197,15 +214,14 @@ class APIVagonesController
                 $vagones = $this->model->paginado($pagina);
                 return $this->view->response($vagones, 200);
             } else {
-                if($pagina<=0){
+                if ($pagina <= 0) {
                     return $this->view->response("Número de página no valido", 400);
-
+                } else {
+                    return $this->view->response("No existe la pagina número " . $pagina, 404);
                 }
-                else{
-                return $this->view->response("No existe la pagina número " . $pagina, 404);
-                 } }
+            }
         } else {
-            return $this->view->response("Parametro no seteado", 400);
+            return $this->view->response("Parametro no seteado o se espera un valor numérico", 400);
         }
     }
 }
