@@ -1,12 +1,5 @@
-
 ## Documentación de API REST TPE
 
-
-##### Respuestas
-- `200 Solicitud exitosa`:
-- `201 Creado con exito`:
-- `400 El servidor no puede procesar la petición debido a un error del cliente`:
-- `404 El servidor no puede encontrar el recurso solicitado`:
 La API REST del TPE recibe consultas tipo HTTP GET, PUT, DELETE y POST con la sintaxis descrita debajo, donde se especifican las URI, sus parámetros y opciones para los mismos. 
 El servidor responde en formato JSON o en formato texto con un mensaje descriptivo de la acción resultado de la consulta realizada.
 
@@ -21,7 +14,7 @@ Muestra todas las locomotoras con sus respectivos campos.
 ##### Respuestas
 
 - `200 Solicitud exitosa`: Si la URI es correcta se listarán todas las locomotoras.
-- `404 El servidor no puede encontrar el recurso solicitado`: si no hay locomotoras para listar.
+- `404 El servidor no puede encontrar el recurso solicitado`: Si no hay locomotoras para listar.
 
 #### Listar una locomotora por id
 Muestra una locomotora seleccionada por su id con sus respectivos campos.
@@ -90,9 +83,8 @@ Siendo "anio_fabricacion" un valor positivo y menor o igual a 2023.
 ##### Respuestas
 
 - `201 Creado con exito`: Si el id existe y el body se completo correctamente se mostrará en pantalla un mensaje que diga que la locomotora con el id correspondiente ha sido modificada con exito.
-- `400 El servidor no puede procesar la petición debido a un error del cliente`:
-Si el body se completo erroneamente se mostrará en pantalla el mensaje error al modificar la locomotora.
-- `404 El servidor no puede encontrar el recurso solicitado` si el id no existe se mostrará en pantalla que el id de la locomotora solicitada no existe.
+- `400 El servidor no puede procesar la petición debido a un error del cliente`: Si el body se completo erroneamente se mostrará en pantalla el mensaje error al modificar la locomotora.
+- `404 El servidor no puede encontrar el recurso solicitado`: Si el id no existe se mostrará en pantalla que el id de la locomotora solicitada no existe.
 #### ***Ingresar una locomotora***
 
 Ingresa una locomotora.
@@ -130,9 +122,8 @@ Siendo "anio_fabricacion" un valor positivo y menor o igual a 2023.
 ##### Respuestas
 
 - `201 Creado con exito`: Si el id existe y el body se completo correctamente se mostrará en pantalla un mensaje que diga que la locomotora con el id correspondiente ha sido ingresada con exito.
-- `400 El servidor no puede procesar la petición debido a un error del cliente`:
-si el body se completo erroneamente se mostrará en pantalla el mensaje error al ingresar la locomotora.
-- `404 El servidor no puede encontrar el recurso solicitado` si el id no existe se mostrará en pantalla que el id de la locomotora solicitada no existe.
+- `400 El servidor no puede procesar la petición debido a un error del cliente`: Si el body se completo erroneamente se mostrará en pantalla el mensaje error al ingresar la locomotora.
+- `404 El servidor no puede encontrar el recurso solicitado`: Si el id no existe se mostrará en pantalla que el id de la locomotora solicitada no existe.
 
 #### ***Ordenar las locomotoras por columna y orden***
 
@@ -215,7 +206,7 @@ Muestra todos los vagones con sus respectivos campos.
 ##### Respuestas
 
 - `200 Solicitud exitosa`: Si la URI es correcta se listarán todos los vagones.
-- `404 El servidor no puede encontrar el recurso solicitado`: si no hay vagones para listar. 
+- `404 El servidor no puede encontrar el recurso solicitado`: Si no hay vagones para listar. 
 
 #### ***Listar un vagón por id***
 
@@ -245,7 +236,6 @@ http://localhost/carpeta/APIREST_TPE/api/vagon/1
 
 ##### Respuestas
 - `200 Solicitud exitosa`: Si el id existe existe se mostrará en pantalla un mensaje que diga que el vagón con el id correspondiente ha sido eliminado con exito
-- `400 El servidor no puede procesar la petición debido a un error del cliente`:
 - `404 El servidor no puede encontrar el recurso solicitado`: Si el id no existe se mostrará en pantalla que el vagón con el id solicitado no existe.
 
 
@@ -299,9 +289,8 @@ Siendo "capacidad_max" un valor positivo.
 ##### Respuestas
 
 - `201 Creado con exito`: Si el id existe y el body se completo correctamente se mostrará en pantalla un mensaje que diga que el vagón con el id correspondiente ha sido modificado con exito.
-- `400 El servidor no puede procesar la petición debido a un error del cliente`:
-Si el body se completo erroneamente se mostrará en pantalla el mensaje error al modificar el vagón.
-- `404 El servidor no puede encontrar el recurso solicitado` si el id del vagón o la locomotora no existe se mostrará en pantalla que el id del vagón o locomotora no existe.
+- `400 El servidor no puede procesar la petición debido a un error del cliente`: Si el body se completo erroneamente se mostrará en pantalla el mensaje error al modificar el vagón.
+- `404 El servidor no puede encontrar el recurso solicitado`: Si el id del vagón o la locomotora no existe se mostrará en pantalla que el id del vagón o locomotora no existe.
 
 
 #### ***Ingresar un vagón***
@@ -352,9 +341,8 @@ Siendo "capacidad_max" un valor positivo.
 ##### Respuestas
 
 - `201 Creado con exito`: Si el id existe y el body se completo correctamente se mostrará en pantalla un mensaje que diga que el vagón con el id correspondiente ha sido ingresado con exito.
-- `400 El servidor no puede procesar la petición debido a un error del cliente`:
-Si el body se completo erroneamente se mostrará en pantalla el mensaje error al ingresar el vagón.
-- `404 El servidor no puede encontrar el recurso solicitado` si el id del vagón o la locomotora no existe se mostrará en pantalla que el id del vagón o locomotora no existe.
+- `400 El servidor no puede procesar la petición debido a un error del cliente`: Si el body se completo erroneamente se mostrará en pantalla el mensaje error al ingresar el vagón.
+- `404 El servidor no puede encontrar el recurso solicitado`: Si el id del vagón o la locomotora no existe se mostrará en pantalla que el id del vagón o locomotora no existe.
 
 #### ***Ordenar los vagones por columna y orden***
 
