@@ -154,7 +154,7 @@ class APILocomotorasController
                 return $this->view->response($filterByColumna, 200);
             }
             else{
-            return $this->view->response("Año de fabricación no válido", 400);
+            return $this->view->response("Año de fabricación no válido", 404);
 
             }
             
@@ -173,7 +173,7 @@ class APILocomotorasController
                 return $this->view->response($locomotoras, 200);
             } else {
                 if($pagina<=0){
-                    return $this->view->response("Número de página no valido", 404);
+                    return $this->view->response("Número de página no valido", 400);
 
                 }
                 else{
@@ -182,7 +182,7 @@ class APILocomotorasController
                 }
             }
         } else {
-            return $this->view->response("Parametro no seteado", 404);
+            return $this->view->response("Parametro no seteado", 400);
         }
     }
 }

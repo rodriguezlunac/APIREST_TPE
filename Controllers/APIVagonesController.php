@@ -180,7 +180,7 @@ class APIVagonesController
                 return $this->view->response($filterColumna, 200);
             }
             else{
-            return $this->view->response("Capacidad máxima no válida", 400);
+            return $this->view->response("Capacidad máxima no válida", 404);
                 
             }
         } else {
@@ -198,14 +198,14 @@ class APIVagonesController
                 return $this->view->response($vagones, 200);
             } else {
                 if($pagina<=0){
-                    return $this->view->response("Número de página no valido", 404);
+                    return $this->view->response("Número de página no valido", 400);
 
                 }
                 else{
                 return $this->view->response("No existe la pagina número " . $pagina, 404);
                  } }
         } else {
-            return $this->view->response("Parametro no seteado", 404);
+            return $this->view->response("Parametro no seteado", 400);
         }
     }
 }
