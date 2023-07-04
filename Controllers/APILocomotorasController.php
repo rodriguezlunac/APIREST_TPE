@@ -148,7 +148,7 @@ class APILocomotorasController
 
     public function filterByColumna()
     {
-        if (isset($_GET['anio_fabricacion']) && (is_numeric($_GET['anio_fabricacion']))) {
+        if (isset($_GET['anio_fabricacion']) && (is_numeric($_GET['anio_fabricacion'])) && $_GET['anio_fabricacion'] > 0 && $_GET['anio_fabricacion'] <= 2023) {
             $filterByColumna = $this->model->filterByColumna($_GET['anio_fabricacion']);
             return $this->view->response($filterByColumna, 200);
         } else {

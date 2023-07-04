@@ -108,7 +108,7 @@ class APIVagonesController
                     $this->view->response("Error al insertar el vagón", 400);
                 }
             } else {
-                $this->view->response("Error al modificar el vagón, la locomotora con id " . $locomotora_id . " no existe", 400);
+                $this->view->response("Error al modificar el vagón, la locomotora con id " . $locomotora_id . " no existe", 404);
             }
         } else {
             $this->view->response("Vagón con id: " . $id_vagon . " no fue encontrado", 404);
