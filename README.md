@@ -19,7 +19,7 @@ Por ejemplo:
 
 http://localhost/carpeta/APIREST_TPE/api/locomotora/1
 
-Si la URI es correcta, es decir, el id existe, el código de error será `200 Solicitud exitosa` y se mostrará en pantalla el vagón solicitado, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que el vagón con el id solicitado no existe, se deberá corregir para poder mostrar lo solicitado.
+Si la URI es correcta, es decir, el id existe, el código de error será `200 Solicitud exitosa` y se mostrará en pantalla la locomotora solicitado, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que la locomotora con el id solicitado no existe, se deberá corregir para poder mostrar lo solicitado.
 #### ***Eliminar una locomotora por id***
 
 Elimina una locomotora seleccionada por su id.
@@ -31,7 +31,7 @@ Por ejemplo:
 
 http://localhost/carpeta/APIREST_TPE/api/locomotora/1
 
-Si la URI es correcta, es decir, el id existe, el código de error será `200 Solicitud exitosa` y se mostrará en pantalla un mensaje que diga que el vagón con el id correspondiente ha sido eliminado con exito, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que el vagón con el id solicitado no existe, se deberá corregir para poder mostrar lo solicitado.
+Si la URI es correcta, es decir, el id existe, el código de error será `200 Solicitud exitosa` y se mostrará en pantalla un mensaje que diga que la locomotora con el id correspondiente ha sido eliminado con exito, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que la locomotora con el id solicitado no existe, se deberá corregir para poder mostrar lo solicitado.
 #### ***Modificar una locomotora por id***
 
 Para modificar un vagon debemos 'rellenar' el body de la siguiente manera, completanto todos los campos respetando su tipo:
@@ -62,8 +62,9 @@ http://localhost/carpeta/APIREST_TPE/api/locomotora/1
         "lugar_fabricacion": "Argentina"
     }
 ```
+Siendo "anio_fabricacion" un valor positivo y menor o igual a 2023.
 
-Si la URI es correcta, es decir, el id existe y el body se completo correctamente el código de error será `200 Solicitud exitosa` y se mostrará en pantalla un mensaje que diga que el vagón con el id correspondiente ha sido modificado con exito, por el contrario el código de error será `400 El servidor no puede procesar la petición debido a un error del cliente` mostrando en pantalla el mensaje parametros no seteados y si la "columna" y/o "orden" no exiten el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla columna y/o roden inexistente, esto se deberá corregir para poder realizar la petición correctamente.
+Si la URI es correcta, es decir, el id existe y el body se completo correctamente el código de error será `201 Creado con exito` y se mostrará en pantalla un mensaje que diga que el vagón con el id correspondiente ha sido modificado con exito, por el contrario el código de error será `400 El servidor no puede procesar la petición debido a un error del cliente` mostrando en pantalla el mensaje parametros no seteados y si la "columna" y/o "orden" no exiten el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla columna y/o roden inexistente, esto se deberá corregir para poder realizar la petición correctamente.
 #### ***Ingresar una locomotora***
 
 Para ingresar un vagon debemos 'rellenar' el body de la siguiente manera, completanto todos los campos respetando su tipo:
@@ -94,7 +95,10 @@ http://localhost/carpeta/APIREST_TPE/api/locomotora/1
     }
 ```
 
-Si la URI es correcta, es decir, el id existe y el body se completo correctamente el código de error será `200 Solicitud exitosa` y se mostrará en pantalla un mensaje que diga que el vagón con el id correspondiente ha sido modificado con exito, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que el vagón con el id solicitado no existe o que faltan parametros para completar la solicitud, esto se deberá corregir para poder realizarla.
+Siendo "anio_fabricacion" un valor positivo y menor o igual a 2023.
+
+
+Si la URI es correcta, es decir, el id existe y el body se completo correctamente el código de error será `201 Creado con exito` y se mostrará en pantalla un mensaje que diga que el vagón con el id correspondiente ha sido modificado con exito, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que el vagón con el id solicitado no existe o que faltan parametros para completar la solicitud, esto se deberá corregir para poder realizarla.
 #### ***Ordenar las locomotoras por columna y orden***
 
 Ordena todos los vagones por una columna seleccionada y en un determinado orden, los valores que pueden tomar son:
@@ -112,7 +116,7 @@ http://localhost/carpeta/APIREST_TPE/api/locomotoras/ordenadas?columna=modelo&or
 Si la URI es correcta, es decir, se encuentras seteados los parametros "columna" y "orden" con valores correctos el código de error será `200 Solicitud exitosa` y se mostrará en pantalla los vagones ordenados con esas condiciones, por el contrario, si los parametros no estan seteados, es decir, el código de error será `400 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que el vagón con el id solicitado no existe o que faltan parametros para completar la solicitud, esto se deberá corregir para poder realizarla.
 #### ***Filtrar por año de fabricación mayor a un valor dado***
 
-Filtra todos los vagones con año de fabricación mayor a un valor asignado de tipo int:
+Filtra todas las locomotoras con año de fabricación mayor a un valor asignado de tipo int:
 
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
@@ -125,7 +129,7 @@ Si la URI es correcta, es decir, se encuentran seteados los parametros "columna"
 
 #### ***Paginado de locomotoras***
 
-Selecciona 10 locomotoras por página
+Lista 10 locomotoras por página
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/locomotoras/paginado?pagina=|
@@ -154,21 +158,69 @@ Si la URI es correcta, es decir, se encuentras seteado el parametro "pagina" con
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `GET`      | vagones     |http://localhost/carpeta/APIREST_TPE/api/vagones|
+
+Si la URI es correcta el código de error será `200 Solicitud exitosa`, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se deberá corregir para poder mostrar lo solicitado.
 #### ***Listar un vagón por id***
 
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagon/|
+
+Por ejemplo:
+
+http://localhost/carpeta/APIREST_TPE/api/vagon/1
+
+Si la URI es correcta, es decir, el id existe, el código de error será `200 Solicitud exitosa` y se mostrará en pantalla el vagón solicitado, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que el vagón con el id solicitado no existe, se deberá corregir para poder mostrar lo solicitado.
 #### ***Eliminar un vagón por id***
 
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `DELETE`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagon/|
+
+http://localhost/carpeta/APIREST_TPE/api/vagon/1
+
+Si la URI es correcta, es decir, el id existe, el código de error será `200 Solicitud exitosa` y se mostrará en pantalla un mensaje que diga que el vagón con el id correspondiente ha sido eliminado con exito, por el contrario el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que el vagón con el id solicitado no existe, se deberá corregir para poder mostrar lo solicitado.
 #### ***Modificar un vagón por id***
 
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `DELETE`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagon/|
+
+Formato para escribir en el body:
+```javascript
+
+ {
+        "nro_vagon": ,
+        "tipo": "",
+        "capacidad_max": ,
+        "modelo": "",
+        "descripcion": "",
+        "locomotora_id": 
+    }
+
+```
+- "nro_vagon" tipo int, 
+- "tipo" tipo varchar,
+- "capacidad_max" tipo int,
+- "modelo" tipo varchar,
+- "descripcion" tipo varchar,
+- "locomotora_id" tipo int.
+
+Por ejemplo:
+```javascript
+
+  {
+        "nro_vagon": 123,
+        "tipo": "Comercial",
+        "capacidad_max": 5000,
+        "modelo": "LB-789",
+        "descripcion": "Vagon comercial",
+        "locomotora_id": 48
+    }
+```
+Siendo "capacidad_max" un valor positivo.
+
+Si la URI es correcta, es decir, el id existe y el body se completo correctamente el código de error será `201 Creado con exito` y se mostrará en pantalla un mensaje que diga que el vagón con el id correspondiente ha sido modificado con exito, por el contrario el código de error será `400 El servidor no puede procesar la petición debido a un error del cliente` mostrando en pantalla el mensaje parametros no seteados y si la "columna" y/o "orden" no exiten el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla columna y/o roden inexistente, esto se deberá corregir para poder realizar la petición correctamente.
 #### ***Ingresar un vagón***
 
 Para insertar un vagon debemos 'rellenar' el body de la siguiente manera, completanto todos los campos respetando su tipo:
@@ -208,7 +260,9 @@ Por ejemplo:
         "locomotora_id": 48
     }
 ```
+Siendo "capacidad_max" un valor positivo.
 
+Si la URI es correcta, es decir, el id existe y el body se completo correctamente el código de error será `201 Creado con exito` y se mostrará en pantalla un mensaje que diga que el vagón con el id correspondiente ha sido modificado con exito, por el contrario el código de error será `400 El servidor no puede procesar la petición debido a un error del cliente` mostrando en pantalla el mensaje parametros no seteados y si la "columna" y/o "orden" no exiten el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla columna y/o roden inexistente, esto se deberá corregir para poder realizar la petición correctamente.
 #### ***Ordenar los vagones por columna y orden***
 
 Ordena todos los vagones por una columna seleccionada y en un determinado orden, los valores que pueden tomar son:
@@ -226,14 +280,23 @@ Si la URI es correcta, es decir, se encuentras seteados los parametros "columna"
 
 #### ***Filtrar por capacidad máxima mayor a un valor dado***
 
+Filtra todos los vagones con capacidad máxima mayor a un valor asignado de tipo int:
+
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones/filtro?capacidad_max=|
 #### ***Paginado de locomotoras***
 
+Lista 10 vagones por página
 | VERBO | RECURSO                   | URI|
 | ------------- | ---------------- |--------------|
 | `GET`      | vagon    |http://localhost/carpeta/APIREST_TPE/api/vagones/paginado?pagina=|
+
+Por ejemplo: 
+
+http://localhost/carpeta/APIREST_TPE/api/vagones/paginado?pagina=1
+
+Si la URI es correcta, es decir, se encuentras seteado el parametro "pagina" con valores correctos el código de error será `200 Solicitud exitosa` y se mostrará en pantalla los 10 o menos vagones correspondientes a dicha página, por el contrario, si los parametros no estan seteados o el valor no es valido el código de error será `404 El servidor no puede encontrar el recurso solicitado` y se mostrará en pantalla que los parametros no estan seteados o que la página seleccionada no es valida, esto se deberá corregir para poder realizar la solicitud.
 #### ***Resumen***
 
 | VERBO | RECURSO                   | URI|
