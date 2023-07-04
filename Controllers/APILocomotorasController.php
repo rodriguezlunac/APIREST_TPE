@@ -2,7 +2,6 @@
 require_once "./Models/locomotorasModel.php";
 require_once "./Views/APIView.php";
 
-//VER QUE SIEMPRE TIRA 500 EN POSTMAN POR MAS QUE ANDE
 class APILocomotorasController
 {
     private $model;
@@ -23,9 +22,7 @@ class APILocomotorasController
 
     function get($params = [])
     {
-        //FALTA CONTEMPLAR LA URI /LOCOMOTORAS/456 TIENE QUE TIRAR ERROR
         if (empty($params)) {
-
             $locomotoras = $this->model->getLocomotoras();
             if (!empty($locomotoras)) {
                 return $this->view->response($locomotoras, 200);
@@ -45,25 +42,29 @@ class APILocomotorasController
     public function insertLocomotora()
     {
         $body = $this->getData();
-
+        if (is_null($body)) {
+            return $this->view->response("Error en los datos para ingresar una locomotora", 400);
+        }
         $requiredParams = ['modelo', 'anio_fabricacion', 'lugar_fabricacion'];
         foreach ($requiredParams as $param) {
             if (!property_exists($body, $param)) {
                 return $this->view->response("Falta/n parametros", 400);
             }
         }
-
         $modelo = $body->modelo;
         $anio_fabricacion = $body->anio_fabricacion;
         $lugar_fabricacion = $body->lugar_fabricacion;
-        if (!empty($modelo) && !empty($anio_fabricacion) && !empty($lugar_fabricacion)) {
+        if (!is_null($modelo) && !is_null($anio_fabricacion) && !is_null($lugar_fabricacion) && is_numeric($anio_fabricacion) && $anio_fabricacion > 0 && $anio_fabricacion <= 2023) {
             $locomotora = $this->model->insertLocomotora($modelo, $anio_fabricacion, $lugar_fabricacion);
             $locomotoraNueva = $this->model->getLocomotora($locomotora);
-        }
-        if ($locomotoraNueva)
-            $this->view->response("Se ha insertado una nueva locomotora correctamente", 201);
-        else
+            if ($locomotoraNueva) {
+                $this->view->response("Se ha insertado una nueva locomotora correctamente", 201);
+            } else {
+                $this->view->response("Error al insertar locomotora", 400);
+            }
+        } else {
             $this->view->response("Error al insertar locomotora", 400);
+        }
     }
 
     public function updateLocomotora($params = [])
@@ -72,7 +73,9 @@ class APILocomotorasController
         $locomotora = $this->model->getLocomotora($id_locomotora);
         if ($locomotora) {
             $body = $this->getData();
-
+            if (is_null($body)) {
+                return $this->view->response("Error en los datos para modificar una locomotora", 400);
+            }
             $requiredParams = ['modelo', 'anio_fabricacion', 'lugar_fabricacion'];
             foreach ($requiredParams as $param) {
                 if (!property_exists($body, $param)) {
@@ -82,9 +85,12 @@ class APILocomotorasController
             $modelo = $body->modelo;
             $anio_fabricacion = $body->anio_fabricacion;
             $lugar_fabricacion = $body->lugar_fabricacion;
-            if (!empty($modelo) && !empty($anio_fabricacion) && !empty($lugar_fabricacion)) {
-                $locomotora = $this->model->updateLocomotora($id_locomotora, $modelo, $anio_fabricacion, $lugar_fabricacion);
+            if (!is_null($modelo) && !is_null($anio_fabricacion) && !is_null($lugar_fabricacion) && is_numeric($anio_fabricacion) && $anio_fabricacion > 0 && $anio_fabricacion <= 2023) {
+                $this->model->updateLocomotora($id_locomotora, $modelo, $anio_fabricacion, $lugar_fabricacion);
                 $this->view->response("Locomotora con id: " . $id_locomotora . " fue modificada con exito", 201);
+            }
+            else{
+                $this->view->response("Error al insertar locomotora", 400);
             }
         } else {
             $this->view->response("Locomotora con id: " . $id_locomotora . " no fue encontrada", 404);
@@ -142,32 +148,41 @@ class APILocomotorasController
 
     public function filterByColumna()
     {
-        if (isset($_GET['anio_fabricacion'])) {
-            $filterByColumna = $this->model->filterByColumna($_GET['anio_fabricacion']);
-            return $this->view->response($filterByColumna, 200);
+        if (isset($_GET['anio_fabricacion']) && (is_numeric($_GET['anio_fabricacion']))) {
+            if( $_GET['anio_fabricacion'] > 0 && $_GET['anio_fabricacion'] <= 2023){
+                $filterByColumna = $this->model->filterByColumna($_GET['anio_fabricacion']);
+                return $this->view->response($filterByColumna, 200);
+            }
+            else{
+            return $this->view->response("Año de fabricación no válido", 404);
+
+            }
+            
         } else {
             return $this->view->response("Parametro no seteado", 400);
         }
     }
-    //VER INYECCION, soluciono?
+
     public function paginado()
     {
         $cantidad = $this->model->countPaginas();
-        if (isset($_GET['pagina']) && ($_GET['pagina'] !== '')) {
+        if (isset($_GET['pagina']) && (is_numeric(($_GET['pagina'])))) {
             $pagina = $_GET['pagina'];
-            for ($pag = 1; $pag <= $cantidad; $pag++) {
-                if ($pag == $pagina) {
-                    $locomotoras = $this->model->paginado($pagina);
-                    return $this->view->response($locomotoras, 200);
-                } else {
-                    $pag = $pag;
-                    if ($pag >= $cantidad) {
-                        return $this->view->response("No existe la pagina número " . $_GET['pagina'], 404);
-                    }
+            if ($pagina > 0 &&  $pagina <= $cantidad) {
+                $locomotoras = $this->model->paginado($pagina);
+                return $this->view->response($locomotoras, 200);
+            } else {
+                if($pagina<=0){
+                    return $this->view->response("Número de página no valido", 400);
+
+                }
+                else{
+                    return $this->view->response("No existe la página número " . $pagina, 404);
+
                 }
             }
         } else {
-            return $this->view->response("Parametro no seteado o sin valor", 400);
+            return $this->view->response("Parametro no seteado", 400);
         }
     }
 }
